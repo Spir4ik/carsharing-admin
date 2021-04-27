@@ -9,6 +9,8 @@ import Input from "../input/Input.jsx";
 export default function() {
   const dispatch = useDispatch();
   const authInfo = useSelector(authSelector());
+  const authReducer = useSelector(state => state.loginReducer)
+
   return(
     <div className={classes.forms__input}>
       <form onSubmit={(e) => e.preventDefault()}>
@@ -28,7 +30,14 @@ export default function() {
         />
         <div className={classes.forms__footer}>
           <a href="#">Запросить доступ</a>
-          <button type="button" onClick={() => dispatch(fetchLogin(authInfo))}>Войти</button>
+          <button
+            type="button"
+            onClick={() => {
+              dispatch(fetchLogin(authInfo));
+              // window.location.reload();
+            }}
+            disabled={(authReducer.loading)}
+          >{authReducer.loading ? <span></span> : "Войти"}</button>
         </div>
       </form>
     </div>

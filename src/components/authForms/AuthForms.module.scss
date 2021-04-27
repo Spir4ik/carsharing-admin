@@ -20,6 +20,20 @@
         cursor: pointer;
         filter: brightness(80%);
       }
+      span {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        margin: -12px 0 0 -10px;
+        border: 4px solid transparent;
+        border-top-color: #ffffff;
+        border-radius: 50%;
+        animation: spinner .6s linear infinite;
+      }
     }
     .forms__footer {
       display: flex;
@@ -34,4 +48,8 @@
       }
     }
   }
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
 }

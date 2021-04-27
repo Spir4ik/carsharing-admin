@@ -5,7 +5,8 @@ export default function fetchLogin(data) {
     dispatch(loginStarted())
     login(
       response => {
-        console.log(response)
+        localStorage.setItem("token", response.access_token)
+        dispatch(loginSuccess(response.access_token))
       },
       data,
       error => dispatch(loginFailed(error))
