@@ -1,0 +1,37 @@
+.forms__input {
+  form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 22px;
+    button {
+      width: 110px;
+      height: 29px;
+      background-color: #007BFF;
+      outline: none;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      margin-left: auto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 11.5px;
+      transition: all 0.2s ease-out;
+      &:hover {
+        cursor: pointer;
+        filter: brightness(80%);
+      }
+    }
+    .forms__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      a {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        text-decoration: none;
+        color: #007BFF;
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const webpack = require('webpack');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -80,7 +81,7 @@ module.exports = {
         // }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css'
-        })
+        }),
     ],
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
