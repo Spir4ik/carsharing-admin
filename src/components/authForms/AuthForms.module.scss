@@ -3,6 +3,9 @@
     display: flex;
     flex-direction: column;
     padding-top: 22px;
+    input {
+      width: 190%;
+    }
     button {
       width: 110px;
       height: 29px;

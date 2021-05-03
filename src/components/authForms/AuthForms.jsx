@@ -33,7 +33,7 @@ export default function() {
           <button
             type="button"
             onClick={() => {
-              dispatch(fetchLogin(authInfo));
+              console.log(dispatch(fetchLogin(authInfo)));
               // window.location.reload();
             }}
             disabled={(authReducer.loading)}

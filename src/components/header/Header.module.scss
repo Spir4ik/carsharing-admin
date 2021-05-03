@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  height: 65px;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0 2.5px 9.5px rgba(90, 97, 105, 0.12);
+  .header__search {
+    display: flex;
+    padding-left: 27px;
+    input {
+      padding-left: 10px;
+      border: none;
+      outline: none;
+    }
+  }
+  .header__profile {
+    display: flex;
+    .profile__notification {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 69px;
+      box-shadow: 0.5px 0 0 #CACEDB, -0.5px 0 0 #CACEDB;
+    }
+    .profile__block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-right: 5px;
+      padding-left: 27px;
+      width: 217px;
+      height: 100%;
+      .block__info {
+        display: flex;
+        align-items: center;
+        .block__avatar {
+          img {
+            margin-right: 10px;
+          }
+        }
+        .block__name {
+          span {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 15px;
+            color: #5A6169;
+          }
+        }
+      }
+      .block__dropdown {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 25px;
+        width: 40px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
