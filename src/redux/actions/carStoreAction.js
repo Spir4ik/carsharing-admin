@@ -33,6 +33,13 @@ export const addColor = (...color) => ({
   }
 })
 
+export const deleteColor = index => ({
+  type: 'DELETE_COLOR',
+  payload: {
+    index
+  }
+})
+
 export const addPriceMin = (priceMin) => ({
   type: 'ADD_PRICE_MIN',
   payload: {

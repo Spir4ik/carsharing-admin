@@ -1,0 +1,27 @@
+.wrapper {
+  .container {
+    display: flex;
+    height: 20px;
+    align-items: center;
+    &:last-child {
+      margin-bottom: 15px;
+    }
+    input {
+      width: 13px;
+      height: 13px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    label {
+      margin-left: 5px;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 10px;
+      color: #495057;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

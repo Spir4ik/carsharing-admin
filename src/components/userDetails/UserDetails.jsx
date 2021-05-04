@@ -1,18 +1,33 @@
 import React, {useState} from 'react'
-import { useDispatch } from "react-redux";
-import {addThumbnail} from '../../redux/actions/carStoreAction'
+import { useDispatch, useSelector } from "react-redux";
+import {addThumbnail, addDescription} from '../../redux/actions/carStoreAction'
 import classes from './UserDetails.module.scss'
+import carStoreSelector from "../../redux/selectors/carStoreSelector";
+import noImage from '../../assets/images/no-image.png'
 
 export default function() {
   const dispatch = useDispatch();
+  const carStore = useSelector(carStoreSelector());
+  
+  const handleChange = (event) => {
+    const selectedFile = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      selectedFile.path = event.target.result;
+      dispatch(addThumbnail(selectedFile));
+    };
+    reader.readAsDataURL(selectedFile);
+  }
 
   return(
     <div className={classes.container}>
       <div className={classes.mainLabel}>
-        <img src="../../assets/images/image%202.jpg" alt="" />
+        <div className={classes.imageBlock}>
+          <img src={carStore.thumbnail.hasOwnProperty('path') ? carStore.thumbnail.path : noImage} alt="" />
+        </div>
         <div className={classes.label__name}>
           <div className={classes.name__car}>
-            <span>Hundai</span>
+            <span>{carStore.name ? carStore.name : "Введите модель"}</span>
           </div>
           <div className={classes.name__body}>
             <span>Компакт</span>
@@ -24,17 +39,7 @@ export default function() {
             type="file"
             name="file"
             accept="image/*,image/jpeg,image/png"
-            onChange={(event) => {
-              const selectedFile = event.target.files[0];
-              const reader = new FileReader();
-
-              reader.onload = (event) => {
-                selectedFile.path = event.target.result;
-                dispatch(addThumbnail(selectedFile));
-              };
-
-              reader.readAsDataURL(selectedFile);
-            }}
+            onChange={(event) => handleChange(event)}
           />
         </div>
       </div>
@@ -56,6 +61,7 @@ export default function() {
             cols="30"
             rows="5"
             placeholder="Введите описание ..."
+            onChange={(e) => dispatch(addDescription(e.target.value))}
           ></textarea>
         </div>
       </div>

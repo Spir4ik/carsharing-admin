@@ -32,10 +32,7 @@ export default function() {
           <a href="#">Запросить доступ</a>
           <button
             type="button"
-            onClick={() => {
-              console.log(dispatch(fetchLogin(authInfo)));
-              // window.location.reload();
-            }}
+            onClick={() => dispatch(fetchLogin(authInfo))}
             disabled={(authReducer.loading)}
           >{authReducer.loading ? <span></span> : "Войти"}</button>
         </div>

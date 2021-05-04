@@ -13,7 +13,7 @@ export default function() {
         <Router>
             <Switch>
               <Route exact path="/" component={AuthorizationPage} />
-              <PrivateRouter path="/editpage" component={() => (<EditCreatePage />)} />
+              <PrivateRouter path="/admin/editpage" component={() => (<EditCreatePage />)} />
             </Switch>
         </Router>
     )

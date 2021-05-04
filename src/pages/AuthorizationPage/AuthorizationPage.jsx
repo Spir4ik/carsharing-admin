@@ -8,7 +8,7 @@ import iconLogo from '../../assets/icon-logo.svg'
 export default function() {
     const history = useHistory()
     const authReducer = useSelector(state => state.loginReducer)
-    useEffect(() => localStorage.getItem('token') ? history.push("/editpage") : history.push("/"), [authReducer.loading]);
+    useEffect(() => localStorage.getItem('token') ? history.push("/admin/editpage") : history.push("/"), [authReducer.loading]);
     return(
         <div className={classes.wrapper}>
             <div className={classes.container}>
