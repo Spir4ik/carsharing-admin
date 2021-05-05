@@ -5,6 +5,7 @@ import { addEmail, addPassword } from '../../redux/actions/authAction'
 import authSelector from "../../redux/selectors/authSelector";
 import classes from './AuthForms.module.scss'
 import Input from "../input/Input.jsx";
+import { addName } from "../../redux/actions/carStoreAction";
 
 export default function() {
   const dispatch = useDispatch();
@@ -16,17 +17,17 @@ export default function() {
       <form onSubmit={(e) => e.preventDefault()}>
         <Input
           id="email"
-          isType="text"
-          isLabel="Почта"
-          currentSelector={authInfo.username}
-          currentDispatch={addEmail}
+          type="text"
+          label="Почта"
+          value={authInfo.username}
+          changeFunc={(e) => dispatch(addEmail(e.target.value))}
         />
         <Input
           id="password"
-          isType="password"
-          isLabel="Пароль"
-          currentSelector={authInfo.password}
-          currentDispatch={addPassword}
+          type="password"
+          label="Пароль"
+          value={authInfo.password}
+          changeFunc={(e) => dispatch(addPassword(e.target.value))}
         />
         <div className={classes.forms__footer}>
           <a href="#">Запросить доступ</a>

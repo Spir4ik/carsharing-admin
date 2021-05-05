@@ -54,4 +54,18 @@ export const addPriceMax = (priceMax) => ({
   }
 })
 
+export const addTank = tank => ({
+  type: 'ADD_TANK',
+  payload: {
+    tank
+  }
+})
+
+export const addNumber = number => ({
+  type: 'ADD_NUMBER',
+  payload: {
+    number
+  }
+})
+
 

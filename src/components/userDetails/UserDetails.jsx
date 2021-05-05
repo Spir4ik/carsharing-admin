@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import {addThumbnail, addDescription} from '../../redux/actions/carStoreAction'
 import classes from './UserDetails.module.scss'
@@ -8,7 +8,7 @@ import noImage from '../../assets/images/no-image.png'
 export default function() {
   const dispatch = useDispatch();
   const carStore = useSelector(carStoreSelector());
-  
+
   const handleChange = (event) => {
     const selectedFile = event.target.files[0];
     const reader = new FileReader();
@@ -30,7 +30,7 @@ export default function() {
             <span>{carStore.name ? carStore.name : "Введите модель"}</span>
           </div>
           <div className={classes.name__body}>
-            <span>Компакт</span>
+            <span>{carStore.categoryId.hasOwnProperty("name") ? carStore.categoryId.name : "Выберите тип"}</span>
           </div>
         </div>
         <div className={classes.selectFile}>

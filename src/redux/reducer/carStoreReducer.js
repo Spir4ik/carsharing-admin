@@ -6,8 +6,8 @@ const initialCarStore = {
   description: "",
   categoryId: {},
   colors: [],
-  tank: 30,
-  number: "a512aa"
+  tank: "0",
+  number: ""
 };
 
 export default function carStoreReducer(state = initialCarStore, action) {
@@ -21,7 +21,7 @@ export default function carStoreReducer(state = initialCarStore, action) {
       return {
         ...state,
         thumbnail: action.payload.thumbnail
-      }
+      };
     case 'ADD_CATEGORY':
       return {
         ...state,
@@ -31,7 +31,7 @@ export default function carStoreReducer(state = initialCarStore, action) {
       return {
         ...state,
         description: action.payload.description
-      }
+      };
     case 'ADD_COLOR':
       return {
         ...state,
@@ -39,7 +39,7 @@ export default function carStoreReducer(state = initialCarStore, action) {
           ...state.colors,
           ...action.payload.color
         ]
-      }
+      };
     case 'DELETE_COLOR':
       const index = action.payload.index;
       return {
@@ -52,12 +52,22 @@ export default function carStoreReducer(state = initialCarStore, action) {
       return {
         ...state,
         priceMin: Number(action.payload.priceMin)
-      }
+      };
     case 'ADD_PRICE_MAX':
       return {
         ...state,
         priceMax: Number(action.payload.priceMax)
-      }
+      };
+    case 'ADD_TANK':
+      return {
+        ...state,
+        tank: Number(action.payload.tank)
+      };
+    case 'ADD_NUMBER':
+      return {
+        ...state,
+        number: action.payload.number
+      };
     default:
       return state;
   }

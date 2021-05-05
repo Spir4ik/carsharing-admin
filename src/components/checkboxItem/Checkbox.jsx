@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import classes from './Checkbox.module.scss';
-import {deleteColor} from '../../redux/actions/carStoreAction'
+import { deleteColor } from '../../redux/actions/carStoreAction'
 import carStoreSelector from "../../redux/selectors/carStoreSelector";
 
 export default function() {

@@ -1,26 +1,30 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import {
   addColor,
   addName,
   addCategoryId,
-  addThumbnail,
-  addDescription
+  addTank,
+  addNumber
 } from "../../redux/actions/carStoreAction"
+import addTextForColor from "../../redux/actions/textForColorAction"
 import classes from './CarSettings.module.scss'
 import Input from "../input/Input.jsx";
 import SelectPrice from "../selectPrice/SelectPrice.jsx";
 import Checkbox from "../checkboxItem/Checkbox.jsx";
+import Select from "../selectComp/Select.jsx";
 import carStoreSelector from "../../redux/selectors/carStoreSelector";
-import getCars from "../../redux/thunk/getCars";
+import categorySelector from "../../redux/selectors/categorySelector";
+import textForColorSelector from "../../redux/selectors/textForColorSelector";
+import getCategory from "../../redux/thunk/getCategory";
 
 export default function() {
-  const [textForColor, setTextForColor] = useState("")
   const dispatch = useDispatch();
   const carStore = useSelector(carStoreSelector());
-  const carsList = useSelector(state => state.getCarsReducer)
-  useEffect(() => dispatch(getCars()), [])
-  // console.log(carStore);
+  const category = useSelector(categorySelector()).category;
+  const textForColor = useSelector(textForColorSelector());
+  useEffect(() => dispatch(getCategory()), []);
+
   return(
     <div className={classes.container}>
       <div className={classes.header}>
@@ -31,35 +35,53 @@ export default function() {
           <form>
             <Input
               id="model-auto"
-              isType="text"
-              isLabel="Модель автомобиля"
-              currentSelector={carStore.name}
-              currentDispatch={addName}
+              type="text"
+              label="Модель автомобиля"
+              value={carStore.name}
+              changeFunc={e => dispatch(addName(e.target.value))}
             />
-            <Input
-              id="type-auto"
-              isType="text"
-              isLabel="Тип автомобиля"
+            <Select
+              currentArray={category}
+              currentFunc={addCategoryId}
             />
             <div className={classes.colors}>
               <Input
                 id="color-auto"
-                isType="text"
-                isLabel="Доступные цвета"
-                currentSelector={textForColor}
-                stateFunc={setTextForColor}
+                type="text"
+                label="Доступные цвета"
+                value={textForColor}
+                changeFunc={e => dispatch(addTextForColor(e.target.value))}
               />
-              <div className={classes.btnAddColor} onClick={() => {
-                setTextForColor("");
-                dispatch(addColor(textForColor));
-              }}>
+              <div
+                className={classes.btnAddColor}
+                onClick={() => {
+                  dispatch(addTextForColor(""));
+                  dispatch(addColor(textForColor));
+                }}
+              >
                 <span></span>
                 <span></span>
               </div>
             </div>
           </form>
           <div className={classes.body__param}>
-            <Checkbox value="hello"/>
+            <Checkbox />
+            <Input
+              id="tank-auto"
+              type="text"
+              label="Количество топлива, %"
+              maxLength={3}
+              value={carStore.tank}
+              changeFunc={e => dispatch(addTank(e.target.value))}
+            />
+            <Input
+              id="number-auto"
+              type="text"
+              label="Номера автомобиля"
+              maxLength={6}
+              value={carStore.number}
+              changeFunc={e => dispatch(addNumber(e.target.value))}
+            />
             <SelectPrice />
           </div>
         </div>

@@ -1,11 +1,11 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
-const webpack = require('webpack');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -50,89 +50,93 @@ const babelOptions = (preset) => {
     return opts;
 };
 
-module.exports = {
-    context: path.resolve(__dirname, 'src'),
-    entry: {
-        main: ['@babel/polyfill', './index.js'],
-    },
-    output: {
-        filename: '[name].[contenthash].js',
-        path: path.resolve(__dirname, 'dist'),
-    },
-    resolve: {
-        extensions: ['.js', '.json', 'png'],
-    },
-    optimization: optimization(),
-    plugins: [
-        new HTMLWebpackPlugin({
-            template: "./index.html",
-            minify: {
-                collapseWhitespace: isProd,
-            }
-        }),
-        new CleanWebpackPlugin(),
-        new CopyWebpackPlugin({
-            patterns: [
-                {
-                    from: path.resolve(__dirname, 'src/assets'),
-                    to: path.resolve(__dirname, 'dist/assets')
+module.exports = () => {
+    return {
+        target: 'node',
+        context: path.resolve(__dirname, 'src'),
+        entry: {
+            main: ['@babel/polyfill', './index.js'],
+        },
+        output: {
+            filename: '[name].[contenthash].js',
+            path: path.resolve(__dirname, 'dist'),
+        },
+        resolve: {
+            extensions: ['.js', '.json', 'png'],
+        },
+        optimization: optimization(),
+        plugins: [
+            new HTMLWebpackPlugin({
+                template: "./index.html",
+                minify: {
+                    collapseWhitespace: isProd,
                 }
-            ]
-        }),
-        new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css'
-        }),
-    ],
-    devServer: {
-        contentBase: path.resolve(__dirname, 'dist'),
-        open: true,
-        historyApiFallback: true,
-        port: 3002,
-    },
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
+            }),
+            new CleanWebpackPlugin(),
+            new CopyWebpackPlugin({
+                patterns: [
                     {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                        }
+                        from: path.resolve(__dirname, 'src/assets'),
+                        to: path.resolve(__dirname, 'dist/assets')
                     }
                 ]
-            },
-            {
-                test: /\.(ttf|woff|woff2|eot)$/,
-                use: ['file-loader']
-            },
-            {
-                test: /\.m?js$/,
-                exclude: /node_modules/,
-                use: {
+            }),
+            new MiniCssExtractPlugin({
+                filename: '[name].[contenthash].css'
+            }),
+            new Dotenv(),
+        ],
+        devServer: {
+            contentBase: path.resolve(__dirname, 'dist'),
+            open: true,
+            historyApiFallback: true,
+            port: 3002,
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    use: [
+                        'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: true,
+                            }
+                        }
+                    ]
+                },
+                {
+                    test: /\.(ttf|woff|woff2|eot)$/,
+                    use: ['file-loader']
+                },
+                {
+                    test: /\.m?js$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: "babel-loader",
+                        options: babelOptions()
+                    }
+                },
+                {
+                    test: /\.(png|jpg|svg|gif)$/,
+                    use: ['file-loader']
+                },
+                {
+                    test: /\.s[ac]ss$/,
+                    use: cssLoaders("sass-loader")
+                },
+                {
+                    test: /\.jsx$/,
+                    exclude: /(node_modules)/,
                     loader: "babel-loader",
-                    options: babelOptions()
+                    options: {
+                        presets: ['@babel/preset-env',
+                            '@babel/react',{
+                                'plugins': ['@babel/plugin-proposal-class-properties']}]
+                    }
                 }
-            },
-            {
-                test: /\.(png|jpg|svg|gif)$/,
-                use: ['file-loader']
-            },
-            {
-                test: /\.s[ac]ss$/,
-                use: cssLoaders("sass-loader")
-            },
-            {
-                test: /\.jsx$/,
-                exclude: /(node_modules)/,
-                loader: "babel-loader",
-                options: {
-                    presets: ['@babel/preset-env',
-                        '@babel/react',{
-                            'plugins': ['@babel/plugin-proposal-class-properties']}]
-                }
-            }
-        ]
-    },
+            ]
+        },
+    }
 };
