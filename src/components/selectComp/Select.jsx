@@ -13,7 +13,7 @@ export default function Select({currentArray, currentFunc}) {
       const userChoice = currentArray.filter(item => {
         return item.name.includes(event.target.value) ? item : null;
       });
-      return dispatch(currentFunc(userChoice[0]));
+      return typeof userChoice[0] === 'object' ? dispatch(currentFunc(userChoice[0])) : dispatch(currentFunc({}));
     }
   };
 
@@ -27,7 +27,7 @@ export default function Select({currentArray, currentFunc}) {
       <label>Тип автомобиля</label>
       <div className={classes.select}>
         <select onChange={(e) => handleChange(e)}>
-          <option value={{}}>Выберите тип автомобиля</option>
+          <option value={{name: "Выберите тип"}}>Выберите тип автомобиля...</option>
           {currentArray.map((item, index) =>
               (
                 item.hasOwnProperty("name") ?

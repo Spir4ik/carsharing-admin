@@ -1,14 +1,15 @@
 import Cars from "../../api/Cars";
-import {getCarsStarted, getCarsSuccess, getCarsFailed} from '../actions/thunkActions/carsThunk'
+import {
+  getCarsStarted,
+  getCarsSuccess,
+  getCarsFailed
+} from '../actions/thunkActions/carsThunk'
 
 export default function getCars(){
   return dispatch => {
     dispatch(getCarsStarted());
-    Cars(
-      response => {
-        console.log(response)
-      },
-      error => dispatch(getCarsFailed(error))
-    )
+    Cars()
+      .then(res => dispatch(getCarsSuccess(res)))
+      .catch(error => dispatch(getCarsFailed(error)))
   }
 }
