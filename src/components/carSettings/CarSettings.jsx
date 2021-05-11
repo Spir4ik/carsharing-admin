@@ -8,7 +8,6 @@ import {
   addNumber
 } from "../../redux/actions/carStoreAction"
 import addTextForColor from "../../redux/actions/textForColorAction";
-import progressAction from "../../redux/actions/progressAction";
 import {
   errorModel,
   errorNumber,
@@ -138,7 +137,7 @@ export default function() {
             <button onClick={() => dispatch(errorModel(true))}>Отменить</button>
           </div>
           <div className={classes.btn__delete}>
-            <button onClick={() => dispatch(progressAction(25))}>Удалить</button>
+            <button>Удалить</button>
           </div>
         </div>
       </div>
