@@ -7,7 +7,8 @@ import {
   addTank,
   addNumber
 } from "../../redux/actions/carStoreAction"
-import addTextForColor from "../../redux/actions/textForColorAction"
+import addTextForColor from "../../redux/actions/textForColorAction";
+import progressAction from "../../redux/actions/progressAction";
 import {
   errorModel,
   errorNumber,
@@ -28,7 +29,7 @@ import errorSelector from "../../redux/selectors/errorSelector";
 import getCategory from "../../redux/thunk/getCategory";
 
 export default function() {
-  const [test, setTest] = useState(0);
+  const [numberMistakes, setNumberMistakes] = useState(0);
   const dispatch = useDispatch();
   const carStore = useSelector(carStoreSelector());
   const category = useSelector(categorySelector()).category;
@@ -39,11 +40,11 @@ export default function() {
   const handleChange = (event, dispatchFunc, errorFunc) => {
     dispatch(errorFunc(false));
     return dispatch(dispatchFunc(event.target.value));
-  }
+  };
 
   const handleRequestPost = () => {
     const generateError = (errorFunc) => {
-      setTest(value => value + 1)
+      setNumberMistakes(value => value + 1);
       return dispatch(errorFunc(true));
     };
 
@@ -59,9 +60,7 @@ export default function() {
     if (carStore.number === "") {
       generateError(errorNumber);
     }
-    if (test === 0) {
-      console.log("POST!")
-    }
+    return numberMistakes === 0 ? console.log("POST!") : console.log("No POST")
   }
 
   return(
@@ -139,7 +138,7 @@ export default function() {
             <button onClick={() => dispatch(errorModel(true))}>Отменить</button>
           </div>
           <div className={classes.btn__delete}>
-            <button>Удалить</button>
+            <button onClick={() => dispatch(progressAction(25))}>Удалить</button>
           </div>
         </div>
       </div>

@@ -5,7 +5,8 @@ import carStoreReducer from "./carStoreReducer";
 import getCarsReducer from "./getCarsReducer";
 import getCategoryReducer from "./getCategoryReducer";
 import textForColorReducer from "./textForColorReducer";
-import errorsReducer from "./errorsReducer"
+import errorsReducer from "./errorsReducer";
+import progressReducer from "./progressReducer";
 
 export default combineReducers(
   {
@@ -15,6 +16,7 @@ export default combineReducers(
     getCarsReducer,
     getCategoryReducer,
     textForColorReducer,
-    errorsReducer
+    errorsReducer,
+    progressReducer
   }
 )

@@ -1,14 +1,16 @@
-import React from 'react'
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {addThumbnail, addDescription} from '../../redux/actions/carStoreAction'
+import { addThumbnail, addDescription } from '../../redux/actions/carStoreAction'
 import classes from './UserDetails.module.scss'
 import carStoreSelector from "../../redux/selectors/carStoreSelector";
+import progressSelector from "../../redux/selectors/progressSelector";
 import noImage from '../../assets/images/no-image.png'
+import ProgressBar from "../progressBar/ProgressBar.jsx";
 
 export default function() {
   const dispatch = useDispatch();
   const carStore = useSelector(carStoreSelector());
-
+  const progressValue = useSelector(progressSelector());
   const handleChange = (event) => {
     const selectedFile = event.target.files[0];
     const reader = new FileReader();
@@ -17,7 +19,7 @@ export default function() {
       dispatch(addThumbnail(selectedFile));
     };
     reader.readAsDataURL(selectedFile);
-  }
+  };
 
   return(
     <div className={classes.container}>
@@ -47,17 +49,17 @@ export default function() {
         <div className={classes.bar}>
           <div className={classes.header}>
             <span>Заполнено</span>
-            <span>74%</span>
+            <span>{progressValue.sum}%</span>
           </div>
-          <progress value="10" max="100"></progress>
+          <ProgressBar />
         </div>
       </div>
       <div className={classes.description}>
         <div className={classes.block}>
           <span>Описание</span>
           <textarea
-            name=""
-            id=""
+            name="description"
+            id="description"
             cols="30"
             rows="5"
             placeholder="Введите описание ..."

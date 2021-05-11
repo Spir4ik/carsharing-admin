@@ -1,9 +1,9 @@
 const initialErrors = {
   inputModel: {text: "Введите модель автомобиля", state: false},
-  inputColor: {text: "Добавьте цвета", state: false},
+  inputColor: {text: "Добавьте цвет", state: false},
   inputTank: {text: "Введите уровень топлива", state: false},
   inputNumber: {text: "Введите номер автомобиля", state: false},
-  inputPrice: {text: "Введите цену", state: false},
+  inputPrice: {text: "Минимальная цена больше максимальной", state: false},
   inputSelect: {text: "Выберите тип автомобиля", state: false},
 }
 

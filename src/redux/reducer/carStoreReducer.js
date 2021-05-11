@@ -66,7 +66,7 @@ export default function carStoreReducer(state = initialCarStore, action) {
     case 'ADD_NUMBER':
       return {
         ...state,
-        number: action.payload.number
+        number: action.payload.number.toUpperCase()
       };
     default:
       return state;
