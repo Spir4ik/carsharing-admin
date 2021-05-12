@@ -36,13 +36,12 @@
       }
       .colors {
         display: flex;
-        align-items: center;
         width: 85%;
         .btnAddColor {
           position: relative;
           width: 28px;
           height: 28px;
-          margin-top: 7px;
+          margin-top: 22px;
           border: 1px solid #BECAD6;
           border-radius: 4px;
           &:hover {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from "react-redux";
 import classes from './Select.module.scss';
 
-export default function Select({currentArray, currentFunc}) {
+export default function Select({currentArray, currentFunc, errorState, errorFunc}) {
   const dispatch = useDispatch();
   const typeOfArray = {
     string(event) {
@@ -19,6 +19,7 @@ export default function Select({currentArray, currentFunc}) {
 
   const handleChange = (event) => {
     const typeOfElementInArray = typeof currentArray[0];
+    dispatch(errorFunc(false));
     return typeOfArray[typeOfElementInArray](event);
   };
 
@@ -26,7 +27,7 @@ export default function Select({currentArray, currentFunc}) {
     <div className={classes.container}>
       <label>Тип автомобиля</label>
       <div className={classes.select}>
-        <select onChange={(e) => handleChange(e)}>
+        <select onChange={(e) => handleChange(e)} className={errorState.state ? classes.error : classes.default}>
           <option value={{name: "Выберите тип"}}>Выберите тип автомобиля...</option>
           {currentArray.map((item, index) =>
               (
@@ -39,12 +40,15 @@ export default function Select({currentArray, currentFunc}) {
           }
         </select>
       </div>
+      {errorState.state && <span>{errorState.text}</span>}
     </div>
   )
 }
 
 Select.propTypes = {
   currentArray: PropTypes.array,
-  currentFunc: PropTypes.func
+  currentFunc: PropTypes.func,
+  errorState: PropTypes.object,
+  errorFunc: PropTypes.func
 }
 

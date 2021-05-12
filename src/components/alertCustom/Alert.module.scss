@@ -1,0 +1,41 @@
+.container {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 13%);
+  height: 42px;
+  background-color: #0EC261;
+  z-index: 2;
+  transition-duration: .3s;
+  transition-property: height;
+  transition-timing-function: ease-in-out;
+  &.close {
+    height: 0;
+    .body, .close {
+      display: none;
+    }
+  }
+  .body {
+    display: flex;
+    align-items: center;
+    padding-left: 27px;
+    .body__icon {
+      img {
+        padding-right: 9px;
+      }
+    }
+    .body__text {
+      color: white;
+    }
+  }
+  .close {
+    display: flex;
+    justify-content: center;
+    width: 55px;
+    height: 20px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

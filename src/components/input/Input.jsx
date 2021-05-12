@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classes from './Input.module.scss'
 
 export default function Input({id, type, label, value, changeFunc, maxLength, placeholder, errorState}) {
-  const test = (typeElem) => {
+  const generateError = (typeElem) => {
     if (errorState) {
       switch (typeElem) {
         case 'class': {
@@ -28,10 +28,10 @@ export default function Input({id, type, label, value, changeFunc, maxLength, pl
             maxLength={maxLength}
             onChange={changeFunc}
             autoComplete="off"
-            className={test('class')}
+            className={generateError('class')}
             placeholder={placeholder}
           />
-        {test('HtmlElem')}
+        {generateError('HtmlElem')}
       </div>
   )
 }

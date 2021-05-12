@@ -31,7 +31,21 @@ export const progressNumber = number => ({
   payload: {
     number
   }
-})
+});
+
+export const progressPrice = price => ({
+  type: "PROGRESS_PRICE",
+  payload: {
+    price
+  }
+});
+
+export const progressThumbnail = thumbnail => ({
+  type: "PROGRESS_THUMBNAIL",
+  payload: {
+    thumbnail
+  }
+});
 
 export const progressSum = () => ({
   type: "PROGRESS_SUM",

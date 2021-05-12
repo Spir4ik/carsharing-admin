@@ -38,4 +38,4 @@ export const errorSelect = state => ({
   payload: {
     state
   }
-})
+});

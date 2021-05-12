@@ -5,7 +5,8 @@ import {
   addName,
   addCategoryId,
   addTank,
-  addNumber
+  addNumber,
+  clear
 } from "../../redux/actions/carStoreAction"
 import addTextForColor from "../../redux/actions/textForColorAction";
 import {
@@ -59,7 +60,13 @@ export default function() {
     if (carStore.number === "") {
       generateError(errorNumber);
     }
-    return numberMistakes === 0 ? console.log("POST!") : console.log("No POST")
+    if (!carStore.categoryId.hasOwnProperty("name")) {
+      generateError(errorSelect);
+    }
+    if (carStore.priceMin === 0 || carStore.priceMin > carStore.priceMax) {
+      generateError(errorPrice);
+    }
+    return numberMistakes === 0 ? console.log(carStore) : console.log("No POST")
   }
 
   return(
@@ -82,6 +89,8 @@ export default function() {
             <Select
               currentArray={category}
               currentFunc={addCategoryId}
+              errorFunc={errorSelect}
+              errorState={errors.inputSelect}
             />
             <div className={classes.colors}>
               <Input
@@ -128,13 +137,16 @@ export default function() {
               placeholder="A000AA00"
               errorState={errors.inputNumber}
             />
-            <SelectPrice />
+            <SelectPrice
+              errorFunc={errorPrice}
+              errorState={errors.inputPrice}
+            />
           </div>
         </div>
         <div className={classes.btn__lineBlock}>
           <div className={classes.btn__groupe}>
             <button onClick={() => handleRequestPost()}>Сохранить</button>
-            <button onClick={() => dispatch(errorModel(true))}>Отменить</button>
+            <button onClick={() => dispatch(clear())}>Отменить</button>
           </div>
           <div className={classes.btn__delete}>
             <button>Удалить</button>

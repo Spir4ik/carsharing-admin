@@ -4,6 +4,8 @@ const initialProgress = {
   progressType: 0,
   progressTank: 0,
   progressNumber: 0,
+  progressPrice: 0,
+  progressThumbnail: 0,
   sum: 0,
 }
 
@@ -34,10 +36,20 @@ export default function progressReducer(state = initialProgress, action) {
         ...state,
         progressNumber: action.payload.number
       };
+    case "PROGRESS_PRICE":
+      return {
+        ...state,
+        progressPrice: action.payload.price
+      };
+    case "PROGRESS_THUMBNAIL":
+      return {
+        ...state,
+        progressThumbnail: action.payload.thumbnail
+      };
     case "PROGRESS_SUM":
       return {
         ...state,
-        sum: state.progressModel + state.progressNumber + state.progressColor + state.progressTank + state.progressType
+        sum: state.progressModel + state.progressNumber + state.progressColor + state.progressTank + state.progressType + state.progressPrice + state.progressThumbnail
       }
     default:
       return state;

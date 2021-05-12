@@ -7,6 +7,7 @@ import getCategoryReducer from "./getCategoryReducer";
 import textForColorReducer from "./textForColorReducer";
 import errorsReducer from "./errorsReducer";
 import progressReducer from "./progressReducer";
+import alertReducer from "./alertReducer";
 
 export default combineReducers(
   {
@@ -17,6 +18,7 @@ export default combineReducers(
     getCategoryReducer,
     textForColorReducer,
     errorsReducer,
-    progressReducer
+    progressReducer,
+    alertReducer
   }
 )

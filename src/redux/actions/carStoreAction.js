@@ -68,4 +68,8 @@ export const addNumber = number => ({
   }
 })
 
+export const clear = () => ({
+  type: 'CLEAR_STORE'
+})
+
 

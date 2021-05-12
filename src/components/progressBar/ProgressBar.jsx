@@ -8,7 +8,9 @@ import {
   progressNumber,
   progressTank,
   progressType,
-  progressColor
+  progressColor,
+  progressThumbnail,
+  progressPrice
 } from "../../redux/actions/progressAction"
 
 export default function() {
@@ -21,6 +23,8 @@ export default function() {
     carStore.tank !== 0 && carStore.tank !== "" ? dispatch(progressTank(14)) : dispatch(progressTank(0));
     carStore.categoryId.hasOwnProperty("name") ? dispatch(progressType(14)) : dispatch(progressType(0));
     carStore.colors.length !== 0 ? dispatch(progressColor(14)) : dispatch(progressColor(0));
+    carStore.priceMin !== 0 ? dispatch(progressPrice(14)) : dispatch(progressPrice(0));
+    carStore.thumbnail.hasOwnProperty("path") ? dispatch(progressThumbnail(16)) : dispatch(progressThumbnail(0));
     dispatch(progressSum())
   }, [carStore])
   return(
