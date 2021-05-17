@@ -1,0 +1,23 @@
+.pagination {
+  .pageItem {
+    list-style-type: none;
+    display: inline;
+    margin-right: 5px;
+    a {
+      text-decoration: none;
+      color: #007BFF;
+      padding: 0 4px 0 4px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .currentPage {
+      border-radius: 50%;
+      background-color: #007BFF;
+      color: white;
+      span {
+        color: white;
+      }
+    }
+  }
+}

@@ -6,7 +6,8 @@ import {
 } from 'react-router-dom';
 import PrivateRouter from "./components/PrivateRouter.jsx";
 import AuthorizationPage from './pages/AuthorizationPage/AuthorizationPage.jsx'
-import EditCreatePage from "./pages/EditAndCreateCar/EditCreatePage.jsx";
+import EditCreatePage from "./pages/EditCreatePage.jsx";
+import TableCars from "./pages/TableCars.jsx";
 
 export default function() {
     return(
@@ -14,6 +15,7 @@ export default function() {
             <Switch>
               <Route exact path="/" component={AuthorizationPage} />
               <PrivateRouter path="/admin/editpage" component={() => (<EditCreatePage />)} />
+              <PrivateRouter path="/admin/tablecars" component={() => (<TableCars />)} />
             </Switch>
         </Router>
     )

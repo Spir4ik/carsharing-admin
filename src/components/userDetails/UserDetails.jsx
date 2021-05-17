@@ -13,10 +13,17 @@ export default function() {
   const progressValue = useSelector(progressSelector());
   const handleChange = (event) => {
     const selectedFile = event.target.files[0];
+    if (event.target.files.length === 0) return;
     const reader = new FileReader();
     reader.onload = (event) => {
       selectedFile.path = event.target.result;
-      dispatch(addThumbnail(selectedFile));
+      const imageFile = {
+        path: selectedFile.path,
+        originalname: selectedFile.name,
+        mimetype: selectedFile.type,
+        size: selectedFile.size
+      };
+      dispatch(addThumbnail(imageFile));
     };
     reader.readAsDataURL(selectedFile);
   };

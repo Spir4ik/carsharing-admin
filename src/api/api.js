@@ -10,3 +10,11 @@ export const api = axios.create({
     'Content-type': 'application/json',
   }
 });
+
+export const authApi = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'X-Api-Factory-Application-Id': process.env.APP_ID,
+    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+  }
+});

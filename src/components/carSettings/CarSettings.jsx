@@ -27,6 +27,8 @@ import categorySelector from "../../redux/selectors/categorySelector";
 import textForColorSelector from "../../redux/selectors/textForColorSelector";
 import errorSelector from "../../redux/selectors/errorSelector";
 import getCategory from "../../redux/thunk/getCategory";
+import getCars from "../../redux/thunk/getCars";
+import postCarRequest from "../../redux/thunk/postCarRequest";
 
 export default function() {
   const [numberMistakes, setNumberMistakes] = useState(0);
@@ -66,7 +68,7 @@ export default function() {
     if (carStore.priceMin === 0 || carStore.priceMin > carStore.priceMax) {
       generateError(errorPrice);
     }
-    return numberMistakes === 0 ? console.log(carStore) : console.log("No POST")
+    return numberMistakes === 0 ? dispatch(postCarRequest(carStore)) : console.log("No POST")
   }
 
   return(

@@ -1,10 +1,8 @@
 import React from 'react'
-import classes from './EditCreatePage.module.scss'
-import Header from "../../components/header/Header.jsx";
-import Sidebar from "../../components/sidebar/Sidebar.jsx";
-import UserDetails from "../../components/userDetails/UserDetails.jsx";
-import CarSettings from "../../components/carSettings/CarSettings.jsx";
-import Alert from "../../components/alertCustom/Alert.jsx";
+import classes from './commonStyles.module.scss'
+import Header from "../components/header/Header.jsx";
+import Sidebar from "../components/sidebar/Sidebar.jsx";
+import Referrals from "../components/topReferrals/Referrals.jsx";
 
 export default function() {
   return(
@@ -15,12 +13,10 @@ export default function() {
         </div>
         <div className={classes.content}>
           <Header />
-          <Alert />
           <div className={classes.content__main}>
-            <p>Карточка автомобиля</p>
+            <p>Список авто</p>
             <div className={classes.content__body}>
-              <UserDetails />
-              <CarSettings />
+              <Referrals />
             </div>
           </div>
           <div className={classes.content__footer}>

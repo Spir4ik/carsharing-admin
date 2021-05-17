@@ -11,5 +11,5 @@ export default function getCars(){
     Cars()
       .then(res => dispatch(getCarsSuccess(res)))
       .catch(error => dispatch(getCarsFailed(error)))
-  }
+  };
 }

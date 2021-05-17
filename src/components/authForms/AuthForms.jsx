@@ -5,7 +5,6 @@ import { addEmail, addPassword } from '../../redux/actions/authAction'
 import authSelector from "../../redux/selectors/authSelector";
 import classes from './AuthForms.module.scss'
 import Input from "../input/Input.jsx";
-import { addName } from "../../redux/actions/carStoreAction";
 
 export default function() {
   const dispatch = useDispatch();

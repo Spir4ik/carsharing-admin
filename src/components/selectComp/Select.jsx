@@ -25,22 +25,22 @@ export default function Select({currentArray, currentFunc, errorState, errorFunc
 
   return(
     <div className={classes.container}>
-      <label>Тип автомобиля</label>
+      {/*<label>Тип автомобиля</label>*/}
       <div className={classes.select}>
-        <select onChange={(e) => handleChange(e)} className={errorState.state ? classes.error : classes.default}>
-          <option value={{name: "Выберите тип"}}>Выберите тип автомобиля...</option>
-          {currentArray.map((item, index) =>
-              (
-                item.hasOwnProperty("name") ?
-                  <option key={index} value={item.name}>{`Тип: ${item.name}`}</option>
-                  :
-                  <option key={index} value={item}>{item}</option>
-              )
-            )
-          }
+        <select onChange={(e) => handleChange(e)}  className={classes.default}>
+          <option value={{name: "Выберите тип"}}>Выберите</option>
+          {/*{currentArray.map((item, index) =>*/}
+          {/*    (*/}
+          {/*      item.hasOwnProperty("name") ?*/}
+          {/*        <option key={index} value={item.name}>{`Тип: ${item.name}`}</option>*/}
+          {/*        :*/}
+          {/*        <option key={index} value={item}>{item}</option>*/}
+          {/*    )*/}
+          {/*  )*/}
+          {/*}*/}
         </select>
       </div>
-      {errorState.state && <span>{errorState.text}</span>}
+      {/*{errorState.state && <span>{errorState.text}</span>}*/}
     </div>
   )
 }

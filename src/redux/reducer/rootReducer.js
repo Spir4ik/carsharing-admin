@@ -8,6 +8,7 @@ import textForColorReducer from "./textForColorReducer";
 import errorsReducer from "./errorsReducer";
 import progressReducer from "./progressReducer";
 import alertReducer from "./alertReducer";
+import postCarReducer from "./postCarReducer";
 
 export default combineReducers(
   {
@@ -19,6 +20,7 @@ export default combineReducers(
     textForColorReducer,
     errorsReducer,
     progressReducer,
-    alertReducer
+    alertReducer,
+    postCarReducer
   }
 )

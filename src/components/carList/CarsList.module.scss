@@ -1,0 +1,32 @@
+.container {
+  width: 100%;
+  height: 90%;
+  margin-top: 15px;
+  table {
+    table-layout: fixed;
+    width: 100%;
+    tr {
+      &:first-child {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        color: #3D5170;
+      }
+      .nameModel {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        color: #3D5170
+      }
+      .otherParam {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        color: #818EA3;
+      }
+    }
+    th, td {
+      padding: 10px;
+    }
+  }
+}

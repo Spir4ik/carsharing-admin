@@ -9,7 +9,10 @@ export default function fetchLogin(data) {
   return dispatch => {
     dispatch(loginStarted())
     login(data)
-      .then(res => dispatch(loginSuccess(res)))
+      .then(res => {
+        localStorage.setItem('token', res)
+        dispatch(loginSuccess(res))
+      })
       .catch(error => dispatch(loginFailed(error)))
   }
 }
