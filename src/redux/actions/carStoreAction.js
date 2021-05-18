@@ -66,7 +66,14 @@ export const addNumber = number => ({
   payload: {
     number
   }
-})
+});
+
+export const addCompletedCar = completedCar => ({
+  type: 'ADD_COMPLETED_CAR',
+  payload: {
+    completedCar
+  }
+});
 
 export const clear = () => ({
   type: 'CLEAR_STORE'

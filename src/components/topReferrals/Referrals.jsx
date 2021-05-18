@@ -59,8 +59,8 @@ export default function() {
 
       return result;
     });
-    return dispatch(filterArray(updateArray))
-  }
+    return dispatch(filterArray(updateArray));
+  };
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 

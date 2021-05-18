@@ -1,8 +1,13 @@
 import React from 'react';
 import classes from './CarsList.module.scss';
+import { useSelector, useDispatch } from "react-redux"
+import {addCompletedCar} from '../../redux/actions/carStoreAction'
 import PropTypes from 'prop-types';
 
 export default function CarsList({cars}) {
+  const dispatch = useDispatch();
+  const carStore = useSelector(state => state.carStoreReducer);
+  console.log(carStore);
   return(
     <div className={classes.container}>
       <table>
@@ -19,7 +24,7 @@ export default function CarsList({cars}) {
         <tbody>
           {cars.map((item, index) => {
             return(
-              <tr key={index}>
+              <tr key={index} onClick={() => dispatch(addCompletedCar(item))}>
                 <td className={classes.nameModel}>{item.name}</td>
                 <td className={classes.otherParam}>{item.categoryId.name}</td>
                 <td className={classes.otherParam}>{item.number}</td>

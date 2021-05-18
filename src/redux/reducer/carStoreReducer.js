@@ -68,6 +68,8 @@ export default function carStoreReducer(state = initialCarStore, action) {
         ...state,
         number: action.payload.number.toUpperCase()
       };
+    case 'ADD_COMPLETED_CAR':
+      return action.payload.completedCar;
     case "CLEAR_STORE":
       return initialCarStore
     default:
