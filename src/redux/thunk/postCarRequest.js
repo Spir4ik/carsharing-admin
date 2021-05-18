@@ -5,12 +5,11 @@ import postCar from "../../api/postCar";
 //   getCarsFailed
 // } from '../actions/thunkActions/carsThunk'
 
-export default function postCarRequest(data){
-  console.log(data);
+export default function postCarRequest(data) {
   return dispatch => {
     dispatch(postCarsStarted());
     postCar(data)
-      .then(res => console.log(res))
+      .then(res => dispatch(postCarsSuccess(res)))
       .catch(error => dispatch(postCarsFailed(error)))
   };
 }

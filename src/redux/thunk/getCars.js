@@ -10,6 +10,6 @@ export default function getCars(){
     dispatch(getCarsStarted());
     Cars()
       .then(res => dispatch(getCarsSuccess(res)))
-      .catch(error => dispatch(getCarsFailed(error)))
+      .catch(error => dispatch(getCarsFailed(error)));
   };
 }

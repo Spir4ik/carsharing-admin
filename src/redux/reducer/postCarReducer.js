@@ -1,6 +1,6 @@
 const initialStateCars = {
   loading: false,
-  car: [],
+  car: {},
   error: null
 };
 

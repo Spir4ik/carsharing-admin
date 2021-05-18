@@ -27,8 +27,9 @@ import categorySelector from "../../redux/selectors/categorySelector";
 import textForColorSelector from "../../redux/selectors/textForColorSelector";
 import errorSelector from "../../redux/selectors/errorSelector";
 import getCategory from "../../redux/thunk/getCategory";
-import getCars from "../../redux/thunk/getCars";
+import alertAction from "../../redux/actions/alertAction";
 import postCarRequest from "../../redux/thunk/postCarRequest";
+import postCarSelector from "../../redux/selectors/postCarSelector";
 
 export default function() {
   const [numberMistakes, setNumberMistakes] = useState(0);
@@ -37,7 +38,14 @@ export default function() {
   const category = useSelector(categorySelector()).category;
   const textForColor = useSelector(textForColorSelector());
   const errors = useSelector(errorSelector());
+  const postCarStatus = useSelector(postCarSelector()).car;
   useEffect(() => dispatch(getCategory()), []);
+  useEffect(() => {
+    if (postCarStatus.hasOwnProperty("id")) {
+      dispatch(alertAction());
+      dispatch(clear());
+    }
+  }, [postCarStatus]);
 
   const handleChange = (event, dispatchFunc, errorFunc) => {
     dispatch(errorFunc(false));
@@ -68,7 +76,7 @@ export default function() {
     if (carStore.priceMin === 0 || carStore.priceMin > carStore.priceMax) {
       generateError(errorPrice);
     }
-    return numberMistakes === 0 ? dispatch(postCarRequest(carStore)) : console.log("No POST")
+    return numberMistakes === 0 ? dispatch(postCarRequest(carStore)) : console.error("No POST")
   }
 
   return(
@@ -93,6 +101,8 @@ export default function() {
               currentFunc={addCategoryId}
               errorFunc={errorSelect}
               errorState={errors.inputSelect}
+              label="Тип автомобиля"
+              optionName="Выберите тип автомобиля"
             />
             <div className={classes.colors}>
               <Input

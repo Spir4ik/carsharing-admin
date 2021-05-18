@@ -23,7 +23,7 @@ export default function Pagination({ postsPerPage, totalPosts, paginate, current
   if (last !== 1) pageNumbers.push(last);
 
   const handleClick = (event, number, index) => {
-    if (event.target.textContent === "..." && (index === 5 || index === 2 || index === 4)) return paginate(value => value + 2);
+    if (event.target.textContent === "..." && (index === 5 || index === 2 || index === 4 || index === 3)) return paginate(value => value + 2);
     if (event.target.textContent === "..." && index === 1) return paginate(value => value - 2);
     return paginate(number);
   }
@@ -31,7 +31,6 @@ export default function Pagination({ postsPerPage, totalPosts, paginate, current
   return (
     <nav>
       <ul className={classes.pagination}>
-        {/*<span>{`<<`}</span>*/}
         {pageNumbers.map((number, index) => (
           <li key={index} className={classes.pageItem}>
             <a onClick={(event) => handleClick(event, number, index)} name='#' className={currentPage === number ? classes.currentPage : null}>
@@ -39,7 +38,6 @@ export default function Pagination({ postsPerPage, totalPosts, paginate, current
             </a>
           </li>
         ))}
-        {/*<span>{`>>`}</span>*/}
       </ul>
     </nav>
   );

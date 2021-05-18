@@ -9,6 +9,7 @@ import errorsReducer from "./errorsReducer";
 import progressReducer from "./progressReducer";
 import alertReducer from "./alertReducer";
 import postCarReducer from "./postCarReducer";
+import filtersReferralsReducer from "./filtersReferralsReducer";
 
 export default combineReducers(
   {
@@ -21,6 +22,7 @@ export default combineReducers(
     errorsReducer,
     progressReducer,
     alertReducer,
-    postCarReducer
+    postCarReducer,
+    filtersReferralsReducer,
   }
 )

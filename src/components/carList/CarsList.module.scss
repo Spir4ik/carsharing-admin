@@ -5,6 +5,7 @@
   table {
     table-layout: fixed;
     width: 100%;
+    border-spacing: 0;
     tr {
       &:first-child {
         font-style: normal;
@@ -27,6 +28,16 @@
     }
     th, td {
       padding: 10px;
+    }
+    tbody {
+      tr {
+        transition: all 0.3s ease-out;
+        background-color: white;
+        &:hover {
+          cursor: pointer;
+          filter: brightness(60%);
+        }
+      }
     }
   }
 }
