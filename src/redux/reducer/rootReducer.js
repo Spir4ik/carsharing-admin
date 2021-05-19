@@ -10,6 +10,7 @@ import progressReducer from "./progressReducer";
 import alertReducer from "./alertReducer";
 import postCarReducer from "./postCarReducer";
 import filtersReferralsReducer from "./filtersReferralsReducer";
+import putCarReducer from "./putCarReducer"
 
 export default combineReducers(
   {
@@ -24,5 +25,6 @@ export default combineReducers(
     alertReducer,
     postCarReducer,
     filtersReferralsReducer,
+    putCarReducer
   }
 )

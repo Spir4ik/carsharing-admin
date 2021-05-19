@@ -1,9 +1,9 @@
 import postCar from "../../api/postCar";
-// import {
-//   getCarsStarted,
-//   getCarsSuccess,
-//   getCarsFailed
-// } from '../actions/thunkActions/carsThunk'
+import {
+  postCarsStarted,
+  postCarsSuccess,
+  postCarsFailed
+} from '../actions/thunkActions/postCarThunk'
 
 export default function postCarRequest(data) {
   return dispatch => {
@@ -14,20 +14,20 @@ export default function postCarRequest(data) {
   };
 }
 
-export const postCarsSuccess = car => ({
-  type: 'POST_CAR_SUCCESS',
-  payload: {
-    car
-  }
-});
-
-export const postCarsStarted = () => ({
-  type: 'POST_CAR_STARTED',
-});
-
-export const postCarsFailed = error => ({
-  type: 'POST_CAR_FAILURE',
-  payload: {
-    error
-  }
-});
+// export const postCarsSuccess = car => ({
+//   type: 'POST_CAR_SUCCESS',
+//   payload: {
+//     car
+//   }
+// });
+//
+// export const postCarsStarted = () => ({
+//   type: 'POST_CAR_STARTED',
+// });
+//
+// export const postCarsFailed = error => ({
+//   type: 'POST_CAR_FAILURE',
+//   payload: {
+//     error
+//   }
+// });

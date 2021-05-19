@@ -29,7 +29,10 @@ import errorSelector from "../../redux/selectors/errorSelector";
 import getCategory from "../../redux/thunk/getCategory";
 import alertAction from "../../redux/actions/alertAction";
 import postCarRequest from "../../redux/thunk/postCarRequest";
+import putCarRequest from "../../redux/thunk/putCarRequest";
+import deleteCarRequest from "../../redux/thunk/deleteCarRequest";
 import postCarSelector from "../../redux/selectors/postCarSelector";
+import putCarSelector from "../../redux/selectors/putCarSelector";
 
 export default function() {
   const [numberMistakes, setNumberMistakes] = useState(0);
@@ -38,19 +41,28 @@ export default function() {
   const category = useSelector(categorySelector()).category;
   const textForColor = useSelector(textForColorSelector());
   const errors = useSelector(errorSelector());
-  const postCarStatus = useSelector(postCarSelector()).car;
+  const postCarStatus = useSelector(postCarSelector());
+  const putCarStatus = useSelector(putCarSelector());
   useEffect(() => dispatch(getCategory()), []);
   useEffect(() => {
-    if (postCarStatus.hasOwnProperty("id")) {
+    if (postCarStatus.loading === true || putCarStatus.loading === true) {
       dispatch(alertAction());
       dispatch(clear());
     }
-  }, [postCarStatus]);
+  }, [postCarStatus, putCarStatus]);
 
   const handleChange = (event, dispatchFunc, errorFunc) => {
     dispatch(errorFunc(false));
     return dispatch(dispatchFunc(event.target.value));
   };
+
+  const handleDelete = () => {
+    if (carStore.hasOwnProperty("id")) {
+      dispatch(deleteCarRequest(carStore, carStore.id));
+      return dispatch(clear());
+    }
+    return null;
+  }
 
   const handleRequestPost = () => {
     const generateError = (errorFunc) => {
@@ -76,7 +88,10 @@ export default function() {
     if (carStore.priceMin === 0 || carStore.priceMin > carStore.priceMax) {
       generateError(errorPrice);
     }
-    return numberMistakes === 0 ? dispatch(postCarRequest(carStore)) : console.error("No POST")
+    if (numberMistakes === 0) {
+      return carStore.hasOwnProperty("id") ? dispatch(putCarRequest(carStore, carStore.id)) : dispatch(postCarRequest(carStore));
+    }
+    return null;
   }
 
   return(
@@ -103,6 +118,7 @@ export default function() {
               errorState={errors.inputSelect}
               label="Тип автомобиля"
               optionName="Выберите тип автомобиля"
+              value={carStore.categoryId.hasOwnProperty("name") ? carStore.categoryId.name : ""}
             />
             <div className={classes.colors}>
               <Input
@@ -119,7 +135,7 @@ export default function() {
                 onClick={() => {
                   if (textForColor === "") return dispatch(errorColor(true));
                   dispatch(addTextForColor(""));
-                  dispatch(addColor(textForColor));
+                  return dispatch(addColor(textForColor));
                 }}
               >
                 <span></span>
@@ -161,7 +177,7 @@ export default function() {
             <button onClick={() => dispatch(clear())}>Отменить</button>
           </div>
           <div className={classes.btn__delete}>
-            <button>Удалить</button>
+            <button onClick={() => handleDelete()}>Удалить</button>
           </div>
         </div>
       </div>

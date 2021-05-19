@@ -32,7 +32,11 @@ export default function() {
     <div className={classes.container}>
       <div className={classes.mainLabel}>
         <div className={classes.imageBlock}>
-          <img src={carStore.thumbnail.hasOwnProperty('path') ? carStore.thumbnail.path : noImage} alt="" />
+          <img
+            src={carStore.thumbnail.hasOwnProperty('path') ? carStore.thumbnail.path : noImage}
+            onError={(e) => { e.target.onerror = null; e.target.src = `https://api-factory.simbirsoft1.com${carStore.thumbnail.path}`; }}
+            alt=""
+          />
         </div>
         <div className={classes.label__name}>
           <div className={classes.name__car}>
@@ -70,6 +74,7 @@ export default function() {
             cols="30"
             rows="5"
             placeholder="Введите описание ..."
+            value={carStore.description}
             onChange={(e) => dispatch(addDescription(e.target.value))}
           ></textarea>
         </div>

@@ -1,13 +1,11 @@
 import React from 'react';
-import classes from './CarsList.module.scss';
-import { useSelector, useDispatch } from "react-redux"
-import {addCompletedCar} from '../../redux/actions/carStoreAction'
+import { useDispatch } from "react-redux";
 import PropTypes from 'prop-types';
+import classes from './CarsList.module.scss';
+import { addCompletedCar } from '../../redux/actions/carStoreAction'
 
 export default function CarsList({cars}) {
   const dispatch = useDispatch();
-  const carStore = useSelector(state => state.carStoreReducer);
-  console.log(carStore);
   return(
     <div className={classes.container}>
       <table>
