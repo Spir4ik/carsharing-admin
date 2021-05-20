@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import classes from './Referrals.module.scss';
 import {useDispatch, useSelector} from "react-redux";
 import getOrdersSelector from "../../redux/selectors/getOrdersSelector";
@@ -11,7 +11,7 @@ export default function() {
   const dispatch = useDispatch();
   const order = useSelector(getOrdersSelector()).order;
   const count = useSelector(getOrdersSelector()).count;
-  const currentPage = useSelector(state => state.currentPageOrderReducer)
+  const currentPage = useSelector(state => state.currentPageOrderReducer);
   useEffect(() => dispatch(getOrdersRequest(currentPage)), [currentPage]);
 
   const paginationOrder = pageNumber => dispatch(currentPageOrderAction(pageNumber));
@@ -28,7 +28,7 @@ export default function() {
         </div>
       </div>
       <div className={classes.carList__block}>
-        <Order orders={order}/>
+        <Order orders={order} />
       </div>
       <div className={classes.pagination__block}>
         <Pagination

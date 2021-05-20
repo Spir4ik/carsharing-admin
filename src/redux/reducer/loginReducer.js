@@ -14,6 +14,7 @@ export default function loginReducer(state = initialStateLogin, action) {
         accessToken: ''
       };
     case 'LOGIN_SUCCESS':
+      window.location.reload();
       return {
         ...state,
         loading: false,
