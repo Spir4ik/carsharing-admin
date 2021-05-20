@@ -23,7 +23,7 @@ export default function() {
         <ul>
           <li onClick={() => history.push("/admin/editpage")} className={match.includes("editpage") ? classes.active : null}><img src={iconCardCar} alt="" /><span>Карточка автомобиля</span></li>
           <li onClick={() => history.push("/admin/tablecars")} className={match.includes("tablecars") ? classes.active : null}><img src={iconListAuto} alt="" /><span>Список авто</span></li>
-          <li><img src={iconOrders} alt="" /><span>Заказы</span></li>
+          <li onClick={() => history.push("/admin/tableorders")} className={match.includes("tableorders") ? classes.active : null}><img src={iconOrders} alt="" /><span>Заказы</span></li>
           <li><img src={iconMenu4} alt="" /><span>Menu 4</span></li>
           <li><img src={iconMenu5} alt="" /><span>Menu 5</span></li>
           <li><img src={iconMenu6} alt="" /><span>Menu 6</span></li>

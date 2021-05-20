@@ -10,7 +10,9 @@ import progressReducer from "./progressReducer";
 import alertReducer from "./alertReducer";
 import postCarReducer from "./postCarReducer";
 import filtersReferralsReducer from "./filtersReferralsReducer";
-import putCarReducer from "./putCarReducer"
+import putCarReducer from "./putCarReducer";
+import getOrdersReducer from "./getOrdersReducer";
+import currentPageOrderReducer from "./currentPageOrderReducer";
 
 export default combineReducers(
   {
@@ -25,6 +27,8 @@ export default combineReducers(
     alertReducer,
     postCarReducer,
     filtersReferralsReducer,
-    putCarReducer
+    putCarReducer,
+    getOrdersReducer,
+    currentPageOrderReducer
   }
 )

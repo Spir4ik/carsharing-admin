@@ -1,0 +1,107 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    .order__image {
+      width: 138px;
+      height: 63px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .order__info {
+      display: flex;
+      flex-direction: column;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 13px;
+      .info__title {
+
+      }
+      .info__date {
+
+      }
+      .info__color {
+
+      }
+    }
+    .order__checkbox {
+      display: flex;
+      flex-direction: column;
+      input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        &+label {
+          display: inline-flex;
+          align-items: center;
+          margin-bottom: 8px;
+          user-select: none;
+          font-style: normal;
+          font-weight: 300;
+          font-size: 14px;
+          line-height: 16px;
+          color: #999999;
+
+          &::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            flex-shrink: 0;
+            flex-grow: 0;
+            border: 1px solid #999999;
+            margin-right: 8px;
+            background-repeat: no-repeat;
+            background-position: center center;
+          }
+        }
+        &:checked {
+          &+label {
+            color: black;
+            &::before {
+              border-color: #0EC261;
+              background: url("../../assets/icon-checkbox.svg") 0 0 no-repeat;
+            }
+          }
+        }
+      }
+    }
+    .order__price {
+      span {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        color: #121212;
+      }
+    }
+    .order__buttons {
+      display: flex;
+      button {
+        &:first-child {
+          border-radius: 4px 0 0 4px;
+        }
+        &:last-child {
+          border-radius: 0 4px 4px 0;
+        }
+
+        width: 71px;
+        height: 24px;
+        background: #FFFFFF;
+        border: 0.5px solid #BECAD6;
+        box-sizing: border-box;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 11px;
+        text-align: center;
+        color: #5A6169
+      }
+    }
+  }
+}
