@@ -2,18 +2,19 @@ import React from 'react';
 import moment from "moment";
 import PropTypes from 'prop-types';
 import classes from './Order.module.scss';
-import imageCar from '../../assets/images/image 2.jpg';
+import noImage from '../../assets/images/no-image.png';
 
 export default function Order({orders}) {
+
   return(
     <div className={classes.container}>
       {orders.map(item => {
-        const currentDateFrom = moment(new Date(item.dateFrom).toISOString()).format('DD.MM.YYYY HH:mm ');
-        const currentDateTo = moment(new Date(item.dateTo).toISOString()).format('DD.MM.YYYY HH:mm ');
+        const currentDateFrom = item.dateFrom ? moment(new Date(item.dateFrom).toISOString()).format('DD.MM.YYYY HH:mm ') : "Дата отсутствует";
+        const currentDateTo = item.dateTo ? moment(new Date(item.dateTo).toISOString()).format('DD.MM.YYYY HH:mm ') : "Дата отсутствует";
         return(
           <div className={classes.content} key={item.id}>
             <div className={classes.order__image}>
-              <img src={item.carId !== null ? item.carId.thumbnail.path : imageCar} alt="" />
+              <img src={item.carId !== null ? `https://api-factory.simbirsoft1.com${item.carId.thumbnail.path}` : noImage} alt="" />
             </div>
             <div className={classes.order__info}>
               <div className={classes.info__title}>

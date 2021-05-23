@@ -1,5 +1,9 @@
 .container {
   width: 50%;
+  @media (max-width: 925px) {
+    width: 100%;
+    margin-bottom: 15px;
+  }
   span {
     color: red;
     font-style: normal;

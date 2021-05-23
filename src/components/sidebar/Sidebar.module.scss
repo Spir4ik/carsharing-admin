@@ -7,12 +7,105 @@
     width: 100%;
     height: 65px;
     box-shadow: 0px 1px 0px #E1E5EB;
+    @media (max-width: 1000px) {
+      display: none;
+    }
     img {
       width: 21px;
       height: 21px;
     }
     p {
       padding-left: 10px;
+      @media (max-width: 1100px) {
+        display: none;
+      }
+    }
+  }
+  .sidebar__headerPhone {
+    display: none;
+    width: 100%;
+    height: 65px;
+    @media (max-width: 1000px) {
+      display: block;
+    }
+    .menu__btn {
+      display: flex;
+      align-items: center;
+      position: fixed;
+      top: 20px;
+      left: 9px;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      z-index: 3;
+      @media (max-width: 1023px) {
+        width: 31px;
+      }
+      @media (max-width: 767px) {
+        width: 26px;
+        position: absolute;
+      }
+      >span {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: black;
+        transition-duration: .25s;
+        @media (max-width: 767px) {
+          background-color: #151B1F;
+        }
+        &::before {
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          background-color: black;
+          transition-duration: .25s;
+          content: '';
+          top: -8px;
+          @media (max-width: 767px) {
+            background-color: #151B1F;
+          }
+        }
+        &::after {
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          background-color: black;
+          transition-duration: .25s;
+          content: '';
+          top: 8px;
+          @media (max-width: 767px) {
+            background-color: #151B1F;
+          }
+        }
+      }
+    }
+    .toggle:global(#menu__toggle) {
+      opacity: 0;
+      &:checked {
+        ~ {
+          .menu__btn {
+            > span {
+              transform: rotate(45deg);
+              background-color: black;
+              &::before {
+                top: 0;
+                transform: rotate(0);
+                background-color: black;
+              }
+
+              &::after {
+                top: 0;
+                transform: rotate(90deg);
+                background-color: black;
+              }
+            }
+          }
+        }
+      }
     }
   }
   .sidebar__list {
@@ -20,6 +113,9 @@
     font-weight: normal;
     font-size: 15px;
     color: #3D5170;
+    @media (max-width: 1000px) {
+      display: none;
+    }
     ul {
       padding-inline-start: 0;
       margin-block-start: 0;
@@ -42,6 +138,11 @@
         }
         img {
           padding: 0 11px 0 23px;
+        }
+        span {
+          @media (max-width: 1100px) {
+            display: none;
+          }
         }
         &:hover {
           img {

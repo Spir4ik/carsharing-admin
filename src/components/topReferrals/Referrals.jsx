@@ -8,7 +8,7 @@ import Pagination from "../pagination/Pagination.jsx";
 import getCars from "../../redux/thunk/getCars";
 import {
   filterModel,
-  clearFilters,
+  clearFiltersCars,
   filterArray,
   filterCategory
 } from "../../redux/actions/filtersReferralsAction";
@@ -76,7 +76,7 @@ export default function() {
           }
         </div>
         <div className={classes.filter__buttons}>
-          <button onClick={() => dispatch(clearFilters())}>Сбросить</button>
+          <button onClick={() => dispatch(clearFiltersCars())}>Сбросить</button>
           <button onClick={() => updateFilters()}>Принять</button>
         </div>
       </div>

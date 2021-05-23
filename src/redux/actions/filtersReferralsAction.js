@@ -12,13 +12,6 @@ export const filterCategory = category => ({
   }
 });
 
-export const filterNumber = number => ({
-  type: "FILTER_NUMBER",
-  payload: {
-    number
-  }
-});
-
 export const filterArray = array => ({
   type: "FILTER_ARRAY",
   payload: {
@@ -26,6 +19,38 @@ export const filterArray = array => ({
   }
 });
 
-export const clearFilters = () => ({
-  type: 'CLEAR_FILTERS'
+export const filterCities = cities => ({
+  type: "FILTER_CITIES",
+  payload: {
+    cities
+  }
+});
+
+export const addCurrentCity = city => ({
+  type: "ADD_CURRENT_CITY",
+  payload: {
+    city
+  }
+});
+
+export const addCurrentStatus = currentStatus => ({
+  type: "ADD_CURRENT_STATUS",
+  payload: {
+    currentStatus
+  }
+});
+
+export const filterStatus = status => ({
+  type: "FILTER_STATUS",
+  payload: {
+    status
+  }
+});
+
+export const clearFiltersCars = () => ({
+  type: 'CLEAR_FILTERS_CARS'
+});
+
+export const clearFiltersState = () => ({
+  type: 'CLEAR_FILTERS_STATE'
 });

@@ -13,6 +13,9 @@
       border: none;
       outline: none;
     }
+    @media (max-width: 550px) {
+      display: none;
+    }
   }
   .header__profile {
     display: flex;
@@ -32,6 +35,10 @@
       padding-left: 27px;
       width: 217px;
       height: 100%;
+      @media (max-width: 550px) {
+        width: 100%;
+        padding-right: 0;
+      }
       .block__info {
         display: flex;
         align-items: center;

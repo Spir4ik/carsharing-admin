@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useRouteMatch, useHistory} from "react-router";
 import classes from './Sidebar.module.scss';
 import iconLogo from '../../assets/icon-logo.svg';
@@ -11,6 +11,7 @@ import iconMenu6 from '../../assets/icon-menu6.svg';
 import iconMenu7 from '../../assets/icon-menu7.svg';
 
 export default function() {
+  const [showMenuBack, setShowMenuBack] = useState(false);
   const match = useRouteMatch().path;
   const history = useHistory();
   return(
@@ -18,6 +19,14 @@ export default function() {
       <div className={classes.sidebar__header}>
         <img src={iconLogo} alt="" />
         <p>Need for car</p>
+      </div>
+      <div className={classes.sidebar__headerPhone}>
+        <input className={classes.toggle} id="menu__toggle" type="checkbox"
+               onChange={() => setShowMenuBack(!showMenuBack)}
+        />
+        <label className={classes.menu__btn} htmlFor="menu__toggle">
+          <span></span>
+        </label>
       </div>
       <div className={classes.sidebar__list}>
         <ul>

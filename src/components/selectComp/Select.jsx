@@ -42,7 +42,7 @@ export default function Select({currentArray, currentFunc, errorState, errorFunc
           {currentArray ? currentArray.map((item, index) =>
             (
               item.hasOwnProperty("name") ?
-                <option key={index} value={item.name}>{`Тип: ${item.name}`}</option>
+                <option key={index} value={item.name}>{item.name}</option>
                 :
                 <option key={index} value={item}>{item}</option>
             )

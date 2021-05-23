@@ -13,6 +13,9 @@ import filtersReferralsReducer from "./filtersReferralsReducer";
 import putCarReducer from "./putCarReducer";
 import getOrdersReducer from "./getOrdersReducer";
 import currentPageOrderReducer from "./currentPageOrderReducer";
+import countOrderReducer from "./countOrderReducer";
+import getCitiesReducer from "./getCitiesReducer";
+import getOrderStatusReducer from "./getOrderStatusReducer";
 
 export default combineReducers(
   {
@@ -29,6 +32,9 @@ export default combineReducers(
     filtersReferralsReducer,
     putCarReducer,
     getOrdersReducer,
-    currentPageOrderReducer
+    currentPageOrderReducer,
+    countOrderReducer,
+    getCitiesReducer,
+    getOrderStatusReducer
   }
 )

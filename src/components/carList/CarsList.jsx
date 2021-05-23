@@ -25,8 +25,8 @@ export default function CarsList({cars}) {
               <tr key={index} onClick={() => dispatch(addCompletedCar(item))}>
                 <td className={classes.nameModel}>{item.name}</td>
                 <td className={classes.otherParam}>{item.categoryId.name}</td>
-                <td className={classes.otherParam}>{item.number}</td>
-                <td className={classes.otherParam}>{item.tank}</td>
+                <td className={classes.otherParam}>{item.number ? item.number : "A000AA00"}</td>
+                <td className={classes.otherParam}>{item.tank ? `${item.tank} %` : `0 %`}</td>
                 <td className={classes.otherParam}>{item.priceMin}</td>
                 <td className={classes.otherParam}>{item.priceMax}</td>
               </tr>

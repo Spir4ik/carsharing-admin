@@ -1,8 +1,8 @@
-import {authApi} from '../api/api'
+import { authApi } from '../api/api'
 
-export default async function getOrders(page) {
-  const response = await authApi.get(
-    `db/order?page=${page}&limit=3`,
-  )
+export default async function getOrders(page, paramCity, paramStatus) {
+  const urlCity = paramCity ? `cityId=${paramCity}&` : "";
+  const urlStatus = paramStatus ? `orderStatusId=${paramStatus}&` : ""
+  const response = await authApi.get(`db/order?${urlCity}${urlStatus}page=${page}&limit=4`);
   return response.data
 }

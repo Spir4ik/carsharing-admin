@@ -90,6 +90,10 @@
         &:last-child {
           border-radius: 0 4px 4px 0;
         }
+        &:hover {
+          filter: brightness(80%);
+          cursor: pointer;
+        }
 
         width: 71px;
         height: 24px;
@@ -100,7 +104,8 @@
         font-weight: normal;
         font-size: 11px;
         text-align: center;
-        color: #5A6169
+        color: #5A6169;
+        transition: all 0.3s ease-out;
       }
     }
   }

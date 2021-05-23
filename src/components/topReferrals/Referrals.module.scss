@@ -16,8 +16,8 @@
     margin-bottom: 15px;
     .filter__selected {
       display: flex;
+      width: 25%;
       select {
-        padding-right: 50px;
         margin-right: 10px;
       }
     }
@@ -67,6 +67,19 @@
   .carList__block {
     width: 100%;
     height: 100%;
+
+    .notFound {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .header {
+        margin-top: 10px;
+      }
+      .body {
+
+      }
+    }
   }
   .pagination__block {
     display: flex;
