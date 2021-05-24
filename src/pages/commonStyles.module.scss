@@ -1,4 +1,7 @@
 .wrapper {
+  @media (max-width: 1000px) {
+    overflow: hidden;
+  }
   .container {
     display: flex;
     position: relative;

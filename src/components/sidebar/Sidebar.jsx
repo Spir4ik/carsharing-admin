@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useRouteMatch, useHistory} from "react-router";
+import PropTypes from 'prop-types';
 import classes from './Sidebar.module.scss';
 import iconLogo from '../../assets/icon-logo.svg';
 import iconCardCar from '../../assets/icon-cardCar.svg';
@@ -10,25 +11,17 @@ import iconMenu5 from '../../assets/icon-menu5.svg';
 import iconMenu6 from '../../assets/icon-menu6.svg';
 import iconMenu7 from '../../assets/icon-menu7.svg';
 
-export default function() {
-  const [showMenuBack, setShowMenuBack] = useState(false);
+export default function Sidebar({showSidebar}) {
   const match = useRouteMatch().path;
   const history = useHistory();
+  const sideBarPhone = showSidebar ? classes.sidebar__show : ""
   return(
-    <div className={classes.container}>
-      <div className={classes.sidebar__header}>
+    <div className={classes.container + " " + sideBarPhone}>
+      <div className={classes.sidebar__header + " " + sideBarPhone}>
         <img src={iconLogo} alt="" />
         <p>Need for car</p>
       </div>
-      <div className={classes.sidebar__headerPhone}>
-        <input className={classes.toggle} id="menu__toggle" type="checkbox"
-               onChange={() => setShowMenuBack(!showMenuBack)}
-        />
-        <label className={classes.menu__btn} htmlFor="menu__toggle">
-          <span></span>
-        </label>
-      </div>
-      <div className={classes.sidebar__list}>
+      <div className={classes.sidebar__list + " " + sideBarPhone}>
         <ul>
           <li onClick={() => history.push("/admin/editpage")} className={match.includes("editpage") ? classes.active : null}><img src={iconCardCar} alt="" /><span>Карточка автомобиля</span></li>
           <li onClick={() => history.push("/admin/tablecars")} className={match.includes("tablecars") ? classes.active : null}><img src={iconListAuto} alt="" /><span>Список авто</span></li>
@@ -42,3 +35,7 @@ export default function() {
     </div>
   )
 }
+
+Sidebar.propTypes = {
+  showSidebar: PropTypes.bool
+};

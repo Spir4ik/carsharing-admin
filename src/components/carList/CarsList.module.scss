@@ -6,6 +6,9 @@
     table-layout: fixed;
     width: 100%;
     border-spacing: 0;
+    @media (max-width: 770px) {
+      width: 200%;
+    }
     tr {
       &:first-child {
         font-style: normal;
