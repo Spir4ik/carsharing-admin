@@ -3,9 +3,13 @@
 .oXvTr4-Xp5v05-CI7j5f- form {
   display: flex;
   flex-direction: column;
-  padding-top: 22px; }
+  padding-top: 22px;
+  width: 100%; }
   .oXvTr4-Xp5v05-CI7j5f- form input {
     width: 190%; }
+    @media (max-width: 925px) {
+      .oXvTr4-Xp5v05-CI7j5f- form input {
+        width: 95%; } }
   .oXvTr4-Xp5v05-CI7j5f- form button {
     width: 110px;
     height: 29px;
