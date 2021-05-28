@@ -12,6 +12,45 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    .car__cardOrder {
+      padding: 15px 0 0 15px;
+      height: 215px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      .cardOrder__header {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-left: 15px;
+        .cardOrder__name {
+          margin-bottom: 6px;
+          span {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 18px;
+            color: #121212;
+          }
+        }
+        .cardOrder__price {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          color: #737373;
+        }
+      }
+      .cardOrder__image {
+        height: 125px;
+        width: 262px;
+        margin-left: auto;
+        img {
+          width: 93%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
     .imageBlock {
       height: 125px;
       width: 262px;
@@ -57,6 +96,19 @@
     margin: 22px 0 22px 0;
     background: #FFFFFF;
     box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.12);
+    .color {
+      height: 100%;
+      padding-left: 22px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      span {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 13.5px;
+        color: #5A6169;
+      }
+    }
     .bar {
       padding: 9px 22px 0 22px;
       .header {

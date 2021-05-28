@@ -59,6 +59,7 @@ export default function() {
 
       return result;
     });
+    setCurrentPage(1);
     return dispatch(filterArray(updateArray));
   };
 

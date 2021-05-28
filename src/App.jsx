@@ -9,6 +9,7 @@ import AuthorizationPage from './pages/AuthorizationPage/AuthorizationPage.jsx'
 import EditCreatePage from "./pages/EditCreatePage.jsx";
 import TableCars from "./pages/TableCars.jsx";
 import TableOrders from "./pages/TableOrders.jsx";
+import EditOrderPage from "./pages/EditOrderPage.jsx";
 
 export default function() {
     return(
@@ -18,6 +19,7 @@ export default function() {
               <PrivateRouter path="/admin/editpage" component={() => (<EditCreatePage />)} />
               <PrivateRouter path="/admin/tablecars" component={() => (<TableCars />)} />
               <PrivateRouter path="/admin/tableorders" component={() => (<TableOrders />)} />
+              <PrivateRouter path="/admin/editorder" component={() => (<EditOrderPage />)} />
             </Switch>
         </Router>
     )

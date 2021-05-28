@@ -32,7 +32,7 @@ export default function Select({currentArray, currentFunc, errorState, errorFunc
 
   return(
     <div className={classes.container}>
-      {label && <label>Тип автомобиля</label>}
+      {label && <label>{label}</label>}
       <div className={classes.select}>
         <select onChange={(e) => handleChange(e)}
                 className={defineClass()}

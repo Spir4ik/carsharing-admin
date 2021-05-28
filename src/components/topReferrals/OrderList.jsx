@@ -5,7 +5,7 @@ import getOrdersSelector from "../../redux/selectors/getOrdersSelector";
 import countOrderSelector from "../../redux/selectors/countOrderSelector";
 import currentPageOrderSelector from "../../redux/selectors/currentPageOrderSelector";
 import getCitiesSelector from "../../redux/selectors/getCitiesSelector";
-import filterModelSelector from "../../redux/selectors/filtersReferralsSelector";
+import filtersReferralsSelector from "../../redux/selectors/filtersReferralsSelector";
 import getOrderStatusSelector from "../../redux/selectors/getOrderStatusSelector";
 import Order from "../OrderComponent/Order.jsx";
 import Select from "../selectComp/Select.jsx";
@@ -21,20 +21,26 @@ import {
   addCurrentCity,
   filterStatus,
   addCurrentStatus,
-  clearFiltersState
+  clearFiltersState,
+  filterDate,
+  addDateValue
 } from "../../redux/actions/filtersReferralsAction";
+import dateObj from '../../constDate'
 
 export default function() {
   const dispatch = useDispatch();
   const currentOrder = useSelector(getOrdersSelector());
   const count = useSelector(countOrderSelector());
   const currentPage = useSelector(currentPageOrderSelector());
-  const currentModel = useSelector(filterModelSelector());
+  const currentModel = useSelector(filtersReferralsSelector());
   const cities = useSelector(getCitiesSelector()).cities;
   const orderStatusArray = useSelector(getOrderStatusSelector()).orderStatus;
   useEffect(() => dispatch(getOrderStatusRequest()), []);
   useEffect(() => dispatch(getCitiesRequest()), []);
-  useEffect(() => dispatch(getOrdersRequest(currentPage, currentModel.currentCity, currentModel.currentStatus)), [currentPage, currentModel.currentCity, currentModel.currentStatus]);
+  useEffect(() =>
+    dispatch(getOrdersRequest(currentPage, currentModel.currentCity, currentModel.currentStatus, currentModel.dateValue)),
+    [currentPage, currentModel.currentCity, currentModel.currentStatus, currentModel.dateValue]
+  );
   useEffect(() => {
     if (currentOrder.order.length !== 0) dispatch(countOrderAction(currentOrder.count));
     else dispatch(countOrderAction(0));
@@ -61,31 +67,35 @@ export default function() {
         )
       }
       return <Order orders={currentOrder.order} />
+  };
+
+  const handleClickToAccept = () => {
+    const currentUrlCity = currentModel.cities.hasOwnProperty("name") ? currentModel.cities.id : "";
+    const currentUrlStatus = currentModel.status.hasOwnProperty("name") ? currentModel.status.id : "";
+    dispatch(currentPageOrderAction(1));
+    dispatch(addCurrentCity(currentUrlCity));
+    dispatch(addCurrentStatus(currentUrlStatus));
+    dispatch(addDateValue(currentModel.date.value))
   }
-  console.log(count);
+
   return (
     <div className={classes.container}>
       <div className={classes.filter__block}>
         <div className={classes.filter__selected}>
+          <Select optionName="Период" currentArray={dateObj.arrayDate()} currentFunc={filterDate} />
           <Select optionName="Статус" currentArray={orderStatusArray} currentFunc={filterStatus} value={currentModel.status.hasOwnProperty("name") ? currentModel.status.name : ""} />
           <Select optionName="Город" currentArray={cities} currentFunc={filterCities} value={currentModel.cities.hasOwnProperty("name") ? currentModel.cities.name : ""} />
         </div>
         <div className={classes.filter__buttons}>
           <button onClick={() => dispatch(clearFiltersState())}>Сбросить</button>
-          <button onClick={() => {
-            const currentUrlCity = currentModel.cities.hasOwnProperty("name") ? currentModel.cities.id : "";
-            const currentUrlStatus = currentModel.status.hasOwnProperty("name") ? currentModel.status.id : "";
-            dispatch(currentPageOrderAction(1));
-            dispatch(addCurrentCity(currentUrlCity));
-            dispatch(addCurrentStatus(currentUrlStatus));
-          }}>Принять</button>
+          <button onClick={() => handleClickToAccept()}>Принять</button>
         </div>
       </div>
       <div className={classes.carList__block}>
         {renderOrders()}
       </div>
       <div className={classes.pagination__block}>
-        {count !== 0 && <Pagination
+        {cities.length !== 0 && <Pagination
           postsPerPage={4}
           totalPosts={count}
           paginate={paginationOrder}

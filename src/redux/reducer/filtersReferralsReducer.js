@@ -5,7 +5,9 @@ const initialState = {
   cities: {},
   status: {},
   currentCity: "",
-  currentStatus: ""
+  currentStatus: "",
+  date: {},
+  dateValue: 0
 }
 
 export default function filtersReferralsReducer(state = initialState, action) {
@@ -44,6 +46,16 @@ export default function filtersReferralsReducer(state = initialState, action) {
       return {
         ...state,
         currentStatus: action.payload.currentStatus
+      };
+    case "FILTER_DATE":
+      return {
+        ...state,
+        date: action.payload.date
+      };
+    case "ADD_DATE_VALUE":
+      return {
+        ...state,
+        dateValue: action.payload.dateValue
       };
     case "CLEAR_FILTERS_CARS":
       return {

@@ -5,7 +5,6 @@ import classes from './Order.module.scss';
 import noImage from '../../assets/images/no-image.png';
 
 export default function Order({orders}) {
-
   return(
     <div className={classes.container}>
       {orders.map(item => {
@@ -14,11 +13,13 @@ export default function Order({orders}) {
         return(
           <div className={classes.content} key={item.id}>
             <div className={classes.order__image}>
-              <img src={item.carId !== null ? `https://api-factory.simbirsoft1.com${item.carId.thumbnail.path}` : noImage} alt="" />
+              {item.hasOwnProperty("carId") && <img
+                src={item.carId !== null ? `https://api-factory.simbirsoft1.com${item.carId.thumbnail.path}` : noImage}
+                alt="" />}
             </div>
             <div className={classes.order__info}>
               <div className={classes.info__title}>
-                <span><strong>{item.carId !== null ? item.carId.name : "Не выбрана машина!"}</strong> в <strong>{item.cityId.name}</strong>, {item.pointId.address}</span>
+                <span>{item.hasOwnProperty("carId") && <strong>{item.carId !== null ? item.carId.name : "Не выбрана машина!"}</strong>} в <strong>{item.cityId.name}</strong>, {item.pointId.address}</span>
               </div>
               <div className={classes.info__title}>
                 <span>{currentDateFrom} — {currentDateTo}</span>

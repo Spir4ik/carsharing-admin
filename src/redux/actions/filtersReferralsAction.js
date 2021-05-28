@@ -47,6 +47,20 @@ export const filterStatus = status => ({
   }
 });
 
+export const filterDate = date => ({
+  type: "FILTER_DATE",
+  payload: {
+    date
+  }
+});
+
+export const addDateValue = dateValue => ({
+  type: "ADD_DATE_VALUE",
+  payload: {
+    dateValue
+  }
+});
+
 export const clearFiltersCars = () => ({
   type: 'CLEAR_FILTERS_CARS'
 });

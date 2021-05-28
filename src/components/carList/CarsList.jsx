@@ -1,11 +1,13 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import PropTypes from 'prop-types';
 import classes from './CarsList.module.scss';
 import { addCompletedCar } from '../../redux/actions/carStoreAction'
 
 export default function CarsList({cars}) {
   const dispatch = useDispatch();
+  const history = useHistory();
   return(
     <div className={classes.container}>
       <table>
@@ -22,7 +24,12 @@ export default function CarsList({cars}) {
         <tbody>
           {cars.map((item, index) => {
             return(
-              <tr key={index} onClick={() => dispatch(addCompletedCar(item))}>
+              <tr
+                key={index}
+                onClick={() => {
+                    dispatch(addCompletedCar(item));
+                    history.push("/admin/editpage");
+              }}>
                 <td className={classes.nameModel}>{item.name}</td>
                 <td className={classes.otherParam}>{item.categoryId.name}</td>
                 <td className={classes.otherParam}>{item.number ? item.number : "A000AA00"}</td>

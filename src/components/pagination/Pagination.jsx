@@ -4,8 +4,9 @@ import classes from './Pagination.module.scss'
 
 export default function Pagination({ postsPerPage, totalPosts, paginate, currentPage }) {
   const pageNumbers = [];
-  const last = Math.ceil(totalPosts / postsPerPage);
+  const last = postsPerPage === 4 ? Math.floor(totalPosts / postsPerPage) : Math.ceil(totalPosts / postsPerPage);
   const delta = 1;
+
 
   for (let i = Math.max(2, (currentPage - delta)); i <= Math.min((last - 1), (currentPage + delta)); i += 1) {
     pageNumbers.push(i);
