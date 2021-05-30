@@ -6,6 +6,7 @@ import {
   addCategoryId,
   addTank,
   addNumber,
+  deleteColor,
   clear
 } from "../../redux/actions/carStoreAction"
 import addTextForColor from "../../redux/actions/textForColorAction";
@@ -82,7 +83,7 @@ export default function() {
     if (carStore.number === "") {
       generateError(errorNumber);
     }
-    if (!carStore.categoryId.hasOwnProperty("name")) {
+    if (carStore.categoryId === null) {
       generateError(errorSelect);
     }
     if (carStore.priceMin === 0 || carStore.priceMin > carStore.priceMax) {
@@ -118,7 +119,7 @@ export default function() {
               errorState={errors.inputSelect}
               label="Тип автомобиля"
               optionName="Выберите тип автомобиля"
-              value={carStore.categoryId.hasOwnProperty("name") ? carStore.categoryId.name : ""}
+              value={carStore.categoryId !== null ? carStore.categoryId.name : null}
             />
             <div className={classes.colors}>
               <Input
@@ -144,7 +145,11 @@ export default function() {
             </div>
           </form>
           <div className={classes.body__param}>
-            <Checkbox />
+            <Checkbox
+              arrayElems={carStore.colors}
+              changeFunc={index => dispatch(deleteColor(index))}
+              setIndex={true}
+            />
             <Input
               id="tank-auto"
               type="text"

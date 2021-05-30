@@ -8,6 +8,7 @@ import { addCompletedCar } from '../../redux/actions/carStoreAction'
 export default function CarsList({cars}) {
   const dispatch = useDispatch();
   const history = useHistory();
+
   return(
     <div className={classes.container}>
       <table>
@@ -30,8 +31,8 @@ export default function CarsList({cars}) {
                     dispatch(addCompletedCar(item));
                     history.push("/admin/editpage");
               }}>
-                <td className={classes.nameModel}>{item.name}</td>
-                <td className={classes.otherParam}>{item.categoryId.name}</td>
+                <td className={classes.nameModel}>{item.name !== null ? item.name : "Нет названия"}</td>
+                <td className={classes.otherParam}>{item.categoryId !== null ? item.categoryId.name : "Нет категории"}</td>
                 <td className={classes.otherParam}>{item.number ? item.number : "A000AA00"}</td>
                 <td className={classes.otherParam}>{item.tank ? `${item.tank} %` : `0 %`}</td>
                 <td className={classes.otherParam}>{item.priceMin}</td>

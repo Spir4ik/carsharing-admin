@@ -1,9 +1,39 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import classes from './CarSettings.module.scss'
 import Select from "../selectComp/Select.jsx";
 import DatePicker from "../datePicker/DatePicker.jsx";
+import {
+  changeCityOrders, 
+  changePointOrders, 
+  changeTankOrders,
+  changeChairOrders,
+  changeWheelOrders,
+  changeRateOrders,
+  clearOrderStore
+} from "../../redux/actions/orderStoreAction";
+import clearOrderStatus from "../../redux/actions/clearPutOrderStatus"
+import getPointRequest from "../../redux/thunk/getPointRequest";
+import putOrderRequest from "../../redux/thunk/putOrderRequest";
+import orderStoreSelector from "../../redux/selectors/orderStoreSelector"
+import getPointSelector from "../../redux/selectors/getPointSelector"
+import getCitiesSelector from "../../redux/selectors/getCitiesSelector";
+import getRateSelector from "../../redux/selectors/getRateSelector";
+import putOrderSelector from "../../redux/selectors/putOrderSelector";
 
 export default function() {
+  const order = useSelector(orderStoreSelector());
+  const currentPoint = useSelector(getPointSelector()).point;
+  const cities = useSelector(getCitiesSelector()).cities;
+  const rates = useSelector(getRateSelector()).rates;
+  const putStatus = useSelector(putOrderSelector());
+  const dispatch = useDispatch();
+
+  useEffect(() => dispatch(getPointRequest(order.cityId.id)), [order.cityId]);
+  useEffect(() => {
+    if (putStatus.status === 200) dispatch(clearOrderStore())
+  }, [putStatus.status])
+  console.log(order)
   return(
     <div className={classes.container}>
       <div className={classes.header}>
@@ -14,24 +44,75 @@ export default function() {
           <form>
             <Select
               label="Выбранный город"
+              currentArray={cities}
+              currentFunc={changeCityOrders}
+              value={order.cityId.name}
             />
             <Select
               label="Выбранный адрес"
+              currentArray={currentPoint}
+              currentFunc={changePointOrders}
+              optionName="Выберите адрес"
+              value={order.pointId !== null ? order.pointId.address : null}
             />
           </form>
           <div className={classes.body__param + " " + classes.body__paramOrder}>
-            <div className={classes.patamOrder__date}>
+            <div className={classes.paramOrder__date}>
               <label>Выбранная дата</label>
-              <DatePicker />
+              <DatePicker 
+                dateFrom={order.dateFrom}
+                dateTo={order.dateTo}
+              />
             </div>
             <Select
               label="Выбранный тариф"
+              currentArray={rates}
+              currentFunc={changeRateOrders}
+              value={order.rateId !== null ? order.rateId.rateTypeId.name : ""}
             />
+            <div className={classes.paramOrder__checkbox}>
+              <label>Доп. услуги</label>
+              <div className={classes.container__checkbox}>
+                <input 
+                  type="checkbox" 
+                  id="tank" 
+                  name="tank"
+                  onChange={() => dispatch(changeTankOrders())}
+                  checked={order.isFullTank ? order.isFullTank : false} 
+                />
+                <label htmlFor="tank">Полный бак</label>
+              </div>
+              <div className={classes.container__checkbox}>
+                <input 
+                  type="checkbox" 
+                  id="chair" 
+                  name="chair"
+                  onChange={() => dispatch(changeChairOrders())}
+                  checked={order.isNeedChildChair ? order.isNeedChildChair : false} 
+                />
+                <label htmlFor="chair">Детское кресло</label>
+              </div>
+              <div className={classes.container__checkbox}>
+                <input 
+                  type="checkbox" 
+                  id="wheel" 
+                  name="wheel"
+                  onChange={() => dispatch(changeWheelOrders())}
+                  checked={order.isRightWheel ? order.isRightWheel : false} 
+                />
+                <label htmlFor="wheel">Правый руль</label>
+              </div>
+            </div>
+            <div className={classes.paramOrder__price}>
+              <div>
+                <span>Цена: <strong>{order.price}</strong></span>
+              </div>
+            </div>
           </div>
         </div>
         <div className={classes.btn__lineBlock}>
           <div className={classes.btn__groupe}>
-            <button >Сохранить</button>
+            <button onClick={() => dispatch(putOrderRequest(order, order.id))}>Сохранить</button>
             <button >Отменить</button>
           </div>
           <div className={classes.btn__delete}>

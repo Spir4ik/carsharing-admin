@@ -11,6 +11,8 @@ export default function Select({currentArray, currentFunc, errorState, errorFunc
     },
     object(event) {
       const userChoice = currentArray.filter(item => {
+        if (item.hasOwnProperty("rateTypeId")) return item.rateTypeId.name.includes(event.target.value);
+        if (item.hasOwnProperty("address")) return item.address.includes(event.target.value);
         return item.name.includes(event.target.value) ? item : null;
       });
       return typeof userChoice[0] === 'object' ? dispatch(currentFunc(userChoice[0])) : dispatch(currentFunc({}));
@@ -38,9 +40,15 @@ export default function Select({currentArray, currentFunc, errorState, errorFunc
                 className={defineClass()}
                 value={value}
         >
-          <option value={{name: "Выберите тип"}}>{optionName}</option>
+          {optionName ? <option value={{name: "Выберите тип"}}>{optionName}</option> : null}
           {currentArray ? currentArray.map((item, index) =>
             (
+              item.hasOwnProperty("rateTypeId") ?
+                <option key={index} value={item.rateTypeId.name}>{item.rateTypeId.name}</option>
+                :
+              item.hasOwnProperty("address") ?
+                <option key={index} value={item.address}>{item.address}</option>
+                :
               item.hasOwnProperty("name") ?
                 <option key={index} value={item.name}>{item.name}</option>
                 :
@@ -63,4 +71,3 @@ Select.propTypes = {
   optionName: PropTypes.string,
   value: PropTypes.string,
 }
-

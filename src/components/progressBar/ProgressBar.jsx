@@ -21,7 +21,7 @@ export default function() {
     carStore.name !== "" ? dispatch(progressModel(14)) : dispatch(progressModel(0));
     carStore.number !== "" ? dispatch(progressNumber(14)) : dispatch(progressNumber(0));
     carStore.tank !== 0 && carStore.tank !== "" ? dispatch(progressTank(14)) : dispatch(progressTank(0));
-    carStore.categoryId.hasOwnProperty("name") ? dispatch(progressType(14)) : dispatch(progressType(0));
+    carStore.categoryId !== null ? dispatch(progressType(14)) : dispatch(progressType(0));
     carStore.colors.length !== 0 ? dispatch(progressColor(14)) : dispatch(progressColor(0));
     carStore.priceMin !== 0 ? dispatch(progressPrice(14)) : dispatch(progressPrice(0));
     carStore.thumbnail.hasOwnProperty("path") ? dispatch(progressThumbnail(16)) : dispatch(progressThumbnail(0));

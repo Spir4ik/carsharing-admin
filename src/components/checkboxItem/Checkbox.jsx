@@ -1,19 +1,24 @@
 import React from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import PropTypes from 'prop-types';
+import { useDispatch } from "react-redux";
 import classes from './Checkbox.module.scss';
-import { deleteColor } from '../../redux/actions/carStoreAction'
-import carStoreSelector from "../../redux/selectors/carStoreSelector";
 
-export default function() {
+export default function Checkbox({ arrayElems, changeFunc, checkedValue, setIndex }) {
   const dispatch = useDispatch();
-  const carStore = useSelector(carStoreSelector());
   return(
     <div className={classes.wrapper}>
-      {carStore.colors.length !== 0 ? carStore.colors.map((item, index) => <div key={index} className={classes.container}>
-        <input type="checkbox" id={item} name={item} onChange={() => dispatch(deleteColor(index))}
-               checked />
+      {arrayElems.length !== 0 ? arrayElems.map((item, index) => <div key={index} className={classes.container}>
+        <input type="checkbox" id={item} name={item} onChange={() => changeFunc(setIndex ? index : item)}
+               checked={checkedValue ? (checkedValue.includes(item)): true} />
         <label htmlFor={item}>{item.charAt(0).toUpperCase() + item.slice(1)}</label>
       </div>) : null}
     </div>
   )
+}
+
+Checkbox.propTypes = {
+  arrayElems: PropTypes.array,
+  changeFunc: PropTypes.func,
+  checkedValue: PropTypes.string,
+  setIndex: PropTypes.bool
 }

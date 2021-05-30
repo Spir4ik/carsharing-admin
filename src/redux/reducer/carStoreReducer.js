@@ -4,7 +4,7 @@ const initialCarStore = {
   name: "",
   thumbnail: {},
   description: "",
-  categoryId: {},
+  categoryId: null,
   colors: [],
   tank: "",
   number: ""

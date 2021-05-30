@@ -53,8 +53,8 @@ export default function() {
   const updateFilters = () => {
     const updateArray = cars.filter(item => {
       let result = true;
-      if (currentModel.category !== "") result = result && item.categoryId.name.includes(currentModel.category);
-
+      // if (currentModel.category !== "") result = result && item.categoryId.name.includes(currentModel.category);
+      if (currentModel.category !== "") result = item.categoryId !== null ? result && item.categoryId.name.includes(currentModel.category) : result
       if (currentModel.model !== "") result = result && item.name.includes(currentModel.model);
 
       return result;

@@ -1,0 +1,59 @@
+.wrapper {
+ width: 100%;
+ height: 50vh;
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    .title {
+     margin-bottom: 15px;
+     span {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 50px;
+      color: #3D5170;
+      @media (max-width: 650px) {
+        font-size: 21px;
+        font-weight: bold
+      }
+     }
+    }
+    .body {
+     margin-bottom: 35px;
+     span {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      color: #818EA3;
+      @media (max-width: 650px) {
+        font-size: 18px;
+      }
+      strong {
+       font-size: 23px;
+       @media (max-width: 650px) {
+        font-size: 20px;
+      }
+      }
+     }
+    }
+    .btn {
+      button {
+       width: 95px;
+       height: 29px;
+       border-radius: 4px;
+       background: #007BFF;
+       border: 0.5px solid #007BFF;
+       border-radius: 4px;
+       font-style: normal;
+       font-weight: normal;
+       font-size: 11px;
+       color: #FFFFFF;
+       &:hover {
+        cursor: pointer;
+       }
+      }
+    }
+  }
+}

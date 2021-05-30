@@ -4,7 +4,7 @@ const initialStateCars = {
   error: null
 };
 
-export default function postCarReducer(state = initialStateCars, action) {
+export default function putCarReducer(state = initialStateCars, action) {
   switch (action.type) {
     case 'PUT_CAR_STARTED':
       return {

@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { useCallback } from 'react';
+import { useSelector } from "react-redux";
 import classes from './commonStyles.module.scss'
 import Header from "../components/header/Header.jsx";
 import Sidebar from "../components/sidebar/Sidebar.jsx";
 import Alert from "../components/alertCustom/Alert.jsx";
 import UserDetailsOrder from "../components/userDetails/UserDetailsOrder.jsx";
 import OrderSettings from "../components/carSettings/OrderSettings.jsx";
+import NotFoundPage from "../components/notFound/NotFoundPage.jsx";
+import Spinner from "../components/Spinner/Spinner.jsx";
+import orderStoreSelector from "../redux/selectors/orderStoreSelector";
+import putOrderSelector from "../redux/selectors/putOrderSelector";
 
 export default function() {
+  const order = useSelector(orderStoreSelector());
+  const putStatus = useSelector(putOrderSelector());
+  const renderContentBody = () => {
+    if (order.hasOwnProperty("id")) {
+      return(
+        <>
+          <UserDetailsOrder />
+          <OrderSettings />
+        </>
+      )
+    }
+    return <NotFoundPage />
+  }
+
   return(
     <div className={classes.wrapper}>
       <div className={classes.container}>
@@ -17,10 +36,9 @@ export default function() {
           <Header />
           <Alert />
           <div className={classes.content__main}>
-            <p>Карточка заказа</p>
+            {order.hasOwnProperty("id") ? <p>Карточка заказа</p> : null}
             <div className={classes.content__body}>
-              <UserDetailsOrder />
-              <OrderSettings />
+              {renderContentBody()}
             </div>
           </div>
           <div className={classes.content__footer}>
@@ -34,6 +52,11 @@ export default function() {
           </div>
         </div>
       </div>
+      {putStatus.loading && <div className={classes.loading_window}>
+        <div className={classes.spinner}>
+          <Spinner />
+        </div>
+      </div>}
     </div>
   )
 }

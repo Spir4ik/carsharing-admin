@@ -42,16 +42,55 @@
       padding-left: 18px;
       width: 40%;
       &.body__paramOrder {
-        width: 100%;
-        .patamOrder__date {
+        width: 95%;
+        .paramOrder__date {
           display: flex;
           flex-direction: column;
           margin-top: 15px;
+          width: 60%;
           label {
             font-style: normal;
             font-weight: normal;
             font-size: 12px;
             color: #495057;
+          }
+        }
+        .paramOrder__checkbox {
+            display: flex;
+            flex-direction: column;
+            height: 90px;
+            margin-top: 15px;
+            label {
+              font-style: normal;
+              font-weight: normal;
+              font-size: 12px;
+              color: #495057;
+              margin-bottom: 8px;
+            }
+          .container__checkbox {
+            display: flex;
+            label {
+              margin-left: 5px;
+              font-style: normal;
+              font-weight: normal;
+              font-size: 12px;
+              color: #495057;
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+        .paramOrder__price {
+          display: flex;
+          span {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            color: #5A6169;
+          }
+          strong {
+            color: black;
           }
         }
       }

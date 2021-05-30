@@ -34,6 +34,8 @@
     .order__info {
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
+      width: 374px;
       font-style: normal;
       font-weight: normal;
       font-size: 13px;
@@ -50,6 +52,8 @@
     .order__checkbox {
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
+      width: 180px;
       input {
         position: absolute;
         z-index: -1;
@@ -90,6 +94,8 @@
       }
     }
     .order__price {
+      width: 130px;
+      text-align: center;
       span {
         font-style: normal;
         font-weight: normal;
@@ -109,6 +115,26 @@
         &:hover {
           filter: brightness(80%);
           cursor: pointer;
+        }
+        &:disabled {
+          &:hover {
+            cursor: auto;
+          }
+          filter: brightness(60%);
+        }
+        &.successfully {
+          background-color: #0EC261;
+          &:hover {
+            cursor: auto;
+            filter: none;
+          }
+        }
+        &.cancelled {
+          background-color: #C4183C;;
+          &:hover {
+            cursor: auto;
+            filter: none;
+          }
         }
 
         width: 71px;

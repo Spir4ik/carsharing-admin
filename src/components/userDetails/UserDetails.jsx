@@ -43,7 +43,7 @@ export default function() {
             <span>{carStore.name ? carStore.name : "Введите модель"}</span>
           </div>
           <div className={classes.name__body}>
-            <span>{carStore.categoryId.hasOwnProperty("name") ? carStore.categoryId.name : "Выберите тип"}</span>
+            <span>{carStore.categoryId !== null ? carStore.categoryId.name : "Выберите тип"}</span>
           </div>
         </div>
         <div className={classes.selectFile}>

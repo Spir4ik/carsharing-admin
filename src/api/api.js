@@ -18,3 +18,29 @@ export const authApi = axios.create({
     'Authorization': `Bearer ${localStorage.getItem('token')}`,
   }
 });
+
+// export const fetchWithAuth(url) = async () => {
+
+// }
+
+// function refreshToken(token) {
+//   return fetch('api/auth/refreshToken', {
+//       method: 'POST',
+//       credentials: 'include',
+//       headers: {
+//           'Accept': 'application/json',
+//           'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//           token,
+//       }),
+//   })
+//       .then((res) => {
+//           if (res.status === 200) {
+//               const tokenData = res.json();
+//               saveToken(JSON.stringify(tokenData)); // сохраняем полученный обновленный токен в sessionStorage, с помощью функции, заданной ранее
+//               return Promise.resolve();
+//           }
+//           return Promise.reject();
+//       });
+// }

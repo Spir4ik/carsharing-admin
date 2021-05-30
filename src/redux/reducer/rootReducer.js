@@ -16,6 +16,10 @@ import currentPageOrderReducer from "./currentPageOrderReducer";
 import countOrderReducer from "./countOrderReducer";
 import getCitiesReducer from "./getCitiesReducer";
 import getOrderStatusReducer from "./getOrderStatusReducer";
+import orderStoreReducer from "./orderStoreReducer";
+import getPointReducer from "./getPointReducer";
+import getRateReducer from "./getRateReducer";
+import putOrderReducer from "./putOrderReducer";
 
 export default combineReducers(
   {
@@ -35,6 +39,10 @@ export default combineReducers(
     currentPageOrderReducer,
     countOrderReducer,
     getCitiesReducer,
-    getOrderStatusReducer
+    getOrderStatusReducer,
+    orderStoreReducer,
+    getPointReducer,
+    getRateReducer,
+    putOrderReducer
   }
 )
