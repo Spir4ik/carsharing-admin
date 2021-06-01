@@ -4,6 +4,7 @@ import classes from './commonStyles.module.scss'
 import Header from "../components/header/Header.jsx";
 import Sidebar from "../components/sidebar/Sidebar.jsx";
 import Alert from "../components/alertCustom/Alert.jsx";
+import Footer from "../components/footer/Footer.jsx";
 import UserDetailsOrder from "../components/userDetails/UserDetailsOrder.jsx";
 import OrderSettings from "../components/carSettings/OrderSettings.jsx";
 import NotFoundPage from "../components/notFound/NotFoundPage.jsx";
@@ -41,14 +42,8 @@ export default function() {
               {renderContentBody()}
             </div>
           </div>
-          <div className={classes.content__footer}>
-            <div className={classes.footer__menu}>
-              <a href="#">Главная страница</a>
-              <a href="#">Ссылка</a>
-            </div>
-            <div className={classes.footer__info}>
-              <span>Copyright © 2020 Simbirsoft</span>
-            </div>
+          <div className={classes.footer}>
+            <Footer />
           </div>
         </div>
       </div>

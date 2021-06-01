@@ -5,6 +5,7 @@ import Sidebar from "../components/sidebar/Sidebar.jsx";
 import UserDetails from "../components/userDetails/UserDetails.jsx";
 import CarSettings from "../components/carSettings/CarSettings.jsx";
 import Alert from "../components/alertCustom/Alert.jsx";
+import Footer from "../components/footer/Footer.jsx";
 
 export default function() {
   return(
@@ -23,14 +24,8 @@ export default function() {
               <CarSettings />
             </div>
           </div>
-          <div className={classes.content__footer}>
-            <div className={classes.footer__menu}>
-              <a href="#">Главная страница</a>
-              <a href="#">Ссылка</a>
-            </div>
-            <div className={classes.footer__info}>
-              <span>Copyright © 2020 Simbirsoft</span>
-            </div>
+          <div className={classes.footer}>
+            <Footer />
           </div>
         </div>
       </div>

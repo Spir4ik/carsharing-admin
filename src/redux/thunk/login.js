@@ -10,7 +10,8 @@ export default function fetchLogin(data) {
     dispatch(loginStarted())
     login(data)
       .then(res => {
-        localStorage.setItem('token', res);
+        localStorage.setItem('token', JSON.stringify(res));
+        localStorage.setItem('lifeTimeToken', JSON.stringify(Date.parse(new Date()) + (res.expires_in * 1000)))
         dispatch(loginSuccess(res));
       })
       .catch(error => dispatch(loginFailed(error)))

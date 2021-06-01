@@ -16,13 +16,13 @@ import "react-datepicker/dist/react-datepicker-cssmodules.css";
 
 moment.locale('ru');
 
-export default function DatePickers({dateTo, dateFrom}) {
+export default function DatePickers({ dateTo, dateFrom }) {
   registerLocale('ru', ru);
   const dispatch = useDispatch();
   const order = useSelector(orderStoreSelector());
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0)
-  // console.log(order)
+
   useEffect(() => {
     const now = moment(order.dateFrom)
     const end = moment(order.dateTo)

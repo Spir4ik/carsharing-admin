@@ -12,7 +12,6 @@ import {
   changeRateOrders,
   clearOrderStore
 } from "../../redux/actions/orderStoreAction";
-import clearOrderStatus from "../../redux/actions/clearPutOrderStatus"
 import getPointRequest from "../../redux/thunk/getPointRequest";
 import putOrderRequest from "../../redux/thunk/putOrderRequest";
 import orderStoreSelector from "../../redux/selectors/orderStoreSelector"
@@ -33,7 +32,7 @@ export default function() {
   useEffect(() => {
     if (putStatus.status === 200) dispatch(clearOrderStore())
   }, [putStatus.status])
-  console.log(order)
+
   return(
     <div className={classes.container}>
       <div className={classes.header}>

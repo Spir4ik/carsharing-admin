@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classes from './Header.module.scss';
 import Sidebar from "../sidebar/Sidebar.jsx";
+import Footer from "../footer/Footer.jsx"
 import imgAvatar from '../../assets/images/Avatar.jpg';
 import iconNotification from '../../assets/icon-notification.svg';
 import iconDropdown from '../../assets/icon-dropdown.svg';
@@ -51,6 +52,9 @@ export default function() {
         </div>
         <div className={classes.sidebar__navigation}>
           <Sidebar showSidebar={true} />
+        </div>
+        <div className={classes.sidebar__footer}>
+          <Footer />
         </div>
       </div>}
     </>

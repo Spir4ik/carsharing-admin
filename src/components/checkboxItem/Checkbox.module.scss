@@ -1,8 +1,13 @@
 .wrapper {
+  @media (max-width: 925px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .container {
     display: flex;
     height: 20px;
     align-items: center;
+    padding-right: 10px;
     &:last-child {
       margin-bottom: 15px;
     }

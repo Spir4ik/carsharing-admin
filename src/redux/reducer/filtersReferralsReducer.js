@@ -71,7 +71,9 @@ export default function filtersReferralsReducer(state = initialState, action) {
         cities: {},
         status: {},
         currentCity: "",
-        currentStatus: ""
+        currentStatus: "",
+        date: {},
+        dateValue: 0
       };
     default:
       return state;

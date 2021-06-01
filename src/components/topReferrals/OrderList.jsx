@@ -42,14 +42,13 @@ export default function() {
     [currentPage, currentModel.currentCity, currentModel.currentStatus, currentModel.dateValue]
   );
   useEffect(() => {
-    if (currentOrder.order.length !== 0) dispatch(countOrderAction(currentOrder.count));
-    else dispatch(countOrderAction(0));
+    if (currentOrder.order.length !== count) dispatch(countOrderAction(currentOrder.count));
   }, [currentOrder.count]);
 
   const paginationOrder = pageNumber => dispatch(currentPageOrderAction(pageNumber));
 
   const renderOrders = () => {
-      if (currentOrder.count === 0 && currentOrder.loading === false) {
+      if ((currentOrder.count === 0 || currentOrder.count === 1) && currentOrder.loading === false) {
         return(
           <div className={classes.notFound}>
             <div className={classes.header}>
@@ -77,12 +76,12 @@ export default function() {
     dispatch(addCurrentStatus(currentUrlStatus));
     dispatch(addDateValue(currentModel.date.value))
   }
-
+console.log(currentModel)
   return (
     <div className={classes.container}>
       <div className={classes.filter__block}>
         <div className={classes.filter__selected}>
-          <Select optionName="Период" currentArray={dateObj.arrayDate()} currentFunc={filterDate} />
+          <Select optionName="Период" currentArray={dateObj.arrayDate()} currentFunc={filterDate} value={currentModel.date?.name ? currentModel.date.name : "" }/>
           <Select optionName="Статус" currentArray={orderStatusArray} currentFunc={filterStatus} value={currentModel.status.hasOwnProperty("name") ? currentModel.status.name : ""} />
           <Select optionName="Город" currentArray={cities} currentFunc={filterCities} value={currentModel.cities.hasOwnProperty("name") ? currentModel.cities.name : ""} />
         </div>
@@ -95,7 +94,7 @@ export default function() {
         {renderOrders()}
       </div>
       <div className={classes.pagination__block}>
-        {cities.length !== 0 && <Pagination
+        {count !== 0 && <Pagination
           postsPerPage={4}
           totalPosts={count}
           paginate={paginationOrder}

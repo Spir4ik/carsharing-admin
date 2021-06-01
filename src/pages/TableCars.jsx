@@ -3,6 +3,7 @@ import classes from './commonStyles.module.scss'
 import Header from "../components/header/Header.jsx";
 import Sidebar from "../components/sidebar/Sidebar.jsx";
 import Referrals from "../components/topReferrals/Referrals.jsx";
+import Footer from "../components/footer/Footer.jsx";
 
 export default function() {
   return(
@@ -19,14 +20,8 @@ export default function() {
               <Referrals />
             </div>
           </div>
-          <div className={classes.content__footer}>
-            <div className={classes.footer__menu}>
-              <a href="#">Главная страница</a>
-              <a href="#">Ссылка</a>
-            </div>
-            <div className={classes.footer__info}>
-              <span>Copyright © 2020 Simbirsoft</span>
-            </div>
+          <div className={classes.footer}>
+            <Footer />
           </div>
         </div>
       </div>
