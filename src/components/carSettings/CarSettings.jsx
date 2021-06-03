@@ -67,8 +67,8 @@ export default function() {
 
   const handleRequestPost = () => {
     const generateError = (errorFunc) => {
-      setNumberMistakes(value => value + 1);
-      return dispatch(errorFunc(true));
+      dispatch(errorFunc(true));
+      return setNumberMistakes(value => value + 1);
     };
 
     if (carStore.name === "") {
@@ -89,7 +89,9 @@ export default function() {
     if (carStore.priceMin === 0 || carStore.priceMin > carStore.priceMax) {
       generateError(errorPrice);
     }
+
     if (numberMistakes === 0) {
+
       return carStore.hasOwnProperty("id") ? dispatch(putCarRequest(carStore, carStore.id)) : dispatch(postCarRequest(carStore));
     }
     return null;

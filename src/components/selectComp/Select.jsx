@@ -42,18 +42,35 @@ export default function Select({currentArray, currentFunc, errorState, errorFunc
         >
           {optionName ? <option value={{name: "Выберите тип"}}>{optionName}</option> : null}
           {currentArray ? currentArray.map((item, index) =>
-            (
-              item.hasOwnProperty("rateTypeId") ?
-                <option key={index} value={item.rateTypeId.name}>{item.rateTypeId.name}</option>
-                :
-              item.hasOwnProperty("address") ?
-                <option key={index} value={item.address}>{item.address}</option>
-                :
-              item.hasOwnProperty("name") ?
-                <option key={index} value={item.name}>{item.name}</option>
-                :
-                <option key={index} value={item}>{item}</option>
-            )
+            {
+              const correctStatusName = () => {
+                switch(item.name) {
+                  case "new":
+                    return "Новый";
+                  case "confirmed":
+                    return "Подтвержденный";
+                  case "cancelled":
+                    return "Отмененный";
+                  case "temp":
+                    return "Временный";
+                  default:
+                    return item.name
+                }
+              }
+  
+              return(
+                item.hasOwnProperty("rateTypeId") ?
+                  <option key={index} value={item.rateTypeId.name}>{item.rateTypeId.name}</option>
+                  :
+                item.hasOwnProperty("address") ?
+                  <option key={index} value={item.address}>{item.address}</option>
+                  :
+                item.hasOwnProperty("name") ?
+                  <option key={index} value={item.name}>{correctStatusName()}</option>
+                  :
+                  <option key={index} value={item}>{item}</option>
+                )
+            }
           ) : null}
         </select>
       </div>

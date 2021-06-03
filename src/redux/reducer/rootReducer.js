@@ -20,6 +20,7 @@ import orderStoreReducer from "./orderStoreReducer";
 import getPointReducer from "./getPointReducer";
 import getRateReducer from "./getRateReducer";
 import putOrderReducer from "./putOrderReducer";
+import filterCarsReducer from "./filterCarsReducer"
 
 export default combineReducers(
   {
@@ -43,6 +44,7 @@ export default combineReducers(
     orderStoreReducer,
     getPointReducer,
     getRateReducer,
-    putOrderReducer
+    putOrderReducer,
+    filterCarsReducer
   }
 )

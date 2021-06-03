@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import classes from './Referrals.module.scss';
 import getOrdersSelector from "../../redux/selectors/getOrdersSelector";
@@ -35,6 +35,9 @@ export default function() {
   const currentModel = useSelector(filtersReferralsSelector());
   const cities = useSelector(getCitiesSelector()).cities;
   const orderStatusArray = useSelector(getOrderStatusSelector()).orderStatus;
+  const [urlCity, setUrlCity] = useState("");
+  const [urlStatus, setUrlStatus] = useState("")
+  const [urlDateValue, setDateValue] = useState("")
   useEffect(() => dispatch(getOrderStatusRequest()), []);
   useEffect(() => dispatch(getCitiesRequest()), []);
   useEffect(() =>
@@ -60,7 +63,7 @@ export default function() {
           </div>
         )
       }
-      if (currentOrder.order.length === 0) {
+      if (currentOrder.loading !== false) {
         return(
           <Spinner />
         )
@@ -76,7 +79,7 @@ export default function() {
     dispatch(addCurrentStatus(currentUrlStatus));
     dispatch(addDateValue(currentModel.date.value))
   }
-console.log(currentModel)
+
   return (
     <div className={classes.container}>
       <div className={classes.filter__block}>

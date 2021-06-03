@@ -4,19 +4,18 @@ import classes from './Pagination.module.scss'
 
 export default function Pagination({ postsPerPage, totalPosts, paginate, currentPage }) {
   const pageNumbers = [];
-  const last = postsPerPage === 4 ? Math.floor(totalPosts / postsPerPage) : Math.ceil(totalPosts / postsPerPage);
+  const last = Math.ceil(totalPosts / postsPerPage);
   const delta = 1;
 
-
-  for (let i = Math.max(2, (currentPage - delta)); i <= Math.min((last - 1), (currentPage + delta)); i += 1) {
+  for (let i = Math.max(2, (currentPage + 1 - delta)); i <= Math.min((last - 1), (currentPage + 1 + delta)); i += 1) {
     pageNumbers.push(i);
   }
 
-  if ((currentPage - delta) > 2) {
+  if ((currentPage + 1 - delta) > 2) {
     pageNumbers.unshift('...');
   }
 
-  if ((currentPage + delta) < (last - 1)) {
+  if ((currentPage + 1 + 1) < (last - 1)) {
     pageNumbers.push('...');
   }
 
@@ -26,7 +25,7 @@ export default function Pagination({ postsPerPage, totalPosts, paginate, current
   const handleClick = (event, number, index) => {
     if (event.target.textContent === "..." && (index === 5 || index === 2 || index === 4 || index === 3)) return paginate(currentPage + 2);
     if (event.target.textContent === "..." && index === 1) return paginate(currentPage - 2);
-    return paginate(number);
+    return paginate(number - 1);
   }
 
   return (
@@ -34,7 +33,7 @@ export default function Pagination({ postsPerPage, totalPosts, paginate, current
       <ul className={classes.pagination}>
         {pageNumbers.map((number, index) => (
           <li key={index} className={classes.pageItem}>
-            <a onClick={(event) => handleClick(event, number, index)} name='#' className={currentPage === number ? classes.currentPage : null}>
+            <a onClick={(event) => handleClick(event, number, index)} name='#' className={currentPage + 1 === number ? classes.currentPage : null}>
               <span>{number}</span>
             </a>
           </li>

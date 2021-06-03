@@ -10,9 +10,7 @@ export default function getOrdersReducer(state = initialStateOrder, action) {
     case 'GET_ORDERS_STARTED':
       return {
         ...state,
-        loading: true,
-        order: [],
-        count: 0
+        loading: true
       };
     case 'GET_ORDERS_SUCCESS':
       return {

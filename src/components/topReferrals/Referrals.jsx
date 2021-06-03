@@ -6,10 +6,10 @@ import CarsList from "../carList/CarsList.jsx";
 import Spinner from "../Spinner/Spinner.jsx";
 import Pagination from "../pagination/Pagination.jsx";
 import getCars from "../../redux/thunk/getCars";
+import getFilterCars from "../../redux/thunk/getFilterCars";
 import {
   filterModel,
   clearFiltersCars,
-  filterArray,
   filterCategory
 } from "../../redux/actions/filtersReferralsAction";
 import getCarsSelector from "../../redux/selectors/getCarsSelector";
@@ -20,11 +20,12 @@ import getCategory from "../../redux/thunk/getCategory";
 export default function() {
   const dispatch = useDispatch();
   const cars = useSelector(getCarsSelector()).car;
+  const paginationCars = useSelector(state => state.filterCarsReducer)
   const category = useSelector(categorySelector()).category;
   const currentModel = useSelector(filterModelSelector());
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(7);
-  const [arrayCarNames, setArrayCarNames] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [urlCategory, setUrlCategory] = useState("");
+  const [urlId, setUrlId] = useState("")
 
   useEffect(() => {
     dispatch(getCars());
@@ -32,64 +33,69 @@ export default function() {
   }, []);
 
   useEffect(() => {
-    const arrayModel = cars.reduce((tally, total) => {
-      const splitFunc = (array, paramSplit) => array.split(paramSplit).slice(0, 1).join('');
-      const removeSpaces = splitFunc(total.name, " ");
-      const removeCommas = splitFunc(removeSpaces, ",");
-      tally.push(removeCommas);
-      return tally;
-    }, []);
-    const allModels = arrayModel.filter((item, index) => {
-      return arrayModel.indexOf(item) === index;
-    });
-    setArrayCarNames(allModels);
-  }, [cars]);
-
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = cars.slice(indexOfFirstPost, indexOfLastPost);
-  const filteredArray = currentModel.array.slice(indexOfFirstPost, indexOfLastPost);
+    dispatch(getFilterCars(currentPage, urlId, urlCategory))
+  }, [currentPage, urlCategory, urlId]);
 
   const updateFilters = () => {
-    const updateArray = cars.filter(item => {
-      let result = true;
-      if (currentModel.category !== null) result = result && item.categoryId.name.includes(currentModel.category);
-      if (currentModel.model !== "") result = result && item.name.includes(currentModel.model);
-
-      return result;
-    });
-    setCurrentPage(1);
-    return dispatch(filterArray(updateArray));
+    setUrlCategory(currentModel.category.id);
+    setUrlId(currentModel.model.id);
+    return setCurrentPage(0)
   };
 
+  const clearFilter = () => {
+    setUrlCategory("");
+    setUrlId("");
+    setCurrentPage(0);
+    return dispatch(clearFiltersCars());
+  }
+
   const paginate = pageNumber => setCurrentPage(pageNumber);
+
+  const renderCarList = () => {
+    if ((paginationCars.count === 0 || paginationCars.count === 1) && paginationCars.loading === false) {
+      return(
+        <div className={classes.notFound}>
+          <div className={classes.header}>
+            <h1>Ничего не найдено!</h1>
+          </div>
+          <div className={classes.body}>
+            <p>Попробуйте изменить параметры поиска</p>
+          </div>
+        </div>
+      )
+    }
+    if (paginationCars.loading !== false) {
+      return(
+        <Spinner />
+      )
+    }
+    return <CarsList cars={paginationCars.cars} />
+  }
 
   return (
     <div className={classes.container}>
       <div className={classes.filter__block}>
         <div className={classes.filter__selected}>
-          {cars.length !== 0 &&
-            <>
-              <Select optionName="Модель" currentArray={arrayCarNames} currentFunc={filterModel} value={currentModel.model} />
-              <Select optionName="Категория" currentArray={category} currentFunc={filterCategory} value={currentModel.category} />
-            </>
-          }
+          <>
+            <Select optionName="Модель" currentArray={cars} currentFunc={filterModel} value={currentModel.model?.name ? currentModel.model.name : ""} />
+            <Select optionName="Категория" currentArray={category} currentFunc={filterCategory} value={currentModel.category?.name ? currentModel.category.name : ""} />
+          </>
         </div>
         <div className={classes.filter__buttons}>
-          <button onClick={() => dispatch(clearFiltersCars())}>Сбросить</button>
+          <button onClick={() => clearFilter()}>Сбросить</button>
           <button onClick={() => updateFilters()}>Принять</button>
         </div>
       </div>
       <div className={classes.carList__block}>
-        {cars.length === 0 ? <Spinner /> : <CarsList cars={currentModel.array.length !== 0 ? filteredArray : currentPosts} />}
+        {renderCarList()}
       </div>
       <div className={classes.pagination__block}>
-        {cars.length !== 0 &&
+        {paginationCars.count !== 0 &&
           <Pagination
-            postsPerPage={postsPerPage}
-            totalPosts={currentModel.array.length !== 0 ? currentModel.array.length : cars.length}
-            paginate={paginate}
-            currentPage={currentPage}
+          postsPerPage={7}
+          totalPosts={paginationCars.count}
+          paginate={paginate}
+          currentPage={currentPage}
           />
         }
       </div>

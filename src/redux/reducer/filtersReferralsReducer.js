@@ -1,6 +1,6 @@
 const initialState = {
-  model: "",
-  category: "",
+  model: {},
+  category: {},
   array: [],
   cities: {},
   status: {},
@@ -20,7 +20,7 @@ export default function filtersReferralsReducer(state = initialState, action) {
     case "FILTER_CATEGORY":
       return {
         ...state,
-        category: action.payload.category.hasOwnProperty("name") ? action.payload.category.name : ""
+        category: action.payload.category
       };
     case "FILTER_ARRAY":
       return {
@@ -60,9 +60,8 @@ export default function filtersReferralsReducer(state = initialState, action) {
     case "CLEAR_FILTERS_CARS":
       return {
         ...state,
-        model: "",
-        category: "",
-        number: "",
+        model: {},
+        category: {},
         array: [],
       };
     case "CLEAR_FILTERS_STATE":
