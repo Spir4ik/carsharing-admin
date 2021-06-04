@@ -20,6 +20,7 @@ export default function Order({orders}) {
     dispatch(getPointRequest(item.cityId.id))
     dispatch(getRateRequest())
     dispatch(addOrder(item))
+    console.log(item)
     history.push("/admin/editorder")
   }
   return(

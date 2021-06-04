@@ -73,7 +73,7 @@ export default function() {
               label="Выбранный тариф"
               currentArray={rates}
               currentFunc={changeRateOrders}
-              value={order.rateId !== null ? order.rateId.rateTypeId.name : ""}
+              value={order?.rateId && order.rateId !== null ? order.rateId.rateTypeId.name : ""}
             />
             <Select
               label="Текущий статус"

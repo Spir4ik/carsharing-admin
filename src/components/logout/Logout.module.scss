@@ -1,0 +1,26 @@
+.containter {
+  position: absolute;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 200px;
+  height: 40px;
+  right: 20px;
+  top: 70px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 6px 6px 25px 0px rgba(34, 60, 80, 0.2);
+  &:hover {
+    box-shadow: inset 0px -1px 0px #E1E5EB, inset 4px 0px 0px #007BFF;
+    cursor: pointer;
+  }
+  .body {
+    padding: 0 10px 0 10px;
+    span {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      color: #5A6169;
+    }
+  }
+}

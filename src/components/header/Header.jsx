@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import classes from './Header.module.scss';
 import Sidebar from "../sidebar/Sidebar.jsx";
-import Footer from "../footer/Footer.jsx"
+import Footer from "../footer/Footer.jsx";
+import Logout from "../logout/Logout.jsx"
 import imgAvatar from '../../assets/images/Avatar.jpg';
 import iconNotification from '../../assets/icon-notification.svg';
 import iconDropdown from '../../assets/icon-dropdown.svg';
@@ -9,6 +10,8 @@ import iconSearch from '../../assets/icon-search.svg';
 
 export default function() {
   const [showMenuBack, setShowMenuBack] = useState(false);
+  const [showLogout, setLogout] = useState(false);
+  const refLogout = useRef(null)
   return(
     <>
       <div className={classes.container}>
@@ -39,11 +42,15 @@ export default function() {
                 <span>Admin</span>
               </div>
             </div>
-            <div className={classes.block__dropdown}>
+            <div className={classes.block__dropdown} onClick={() => setLogout(value => !value)}>
               <img src={iconDropdown} alt="" />
             </div>
           </div>
         </div>
+        {showLogout && <Logout
+          showFunc={setLogout}
+          currentRef={refLogout}
+        />}
       </div>
       {showMenuBack && <div className={classes.sidebar__phone}>
         <div className={classes.sidebar__phoneSearch}>

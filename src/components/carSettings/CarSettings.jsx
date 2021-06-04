@@ -52,7 +52,7 @@ export default function() {
       dispatch(clear());
     }
   }, [postCarStatus.loading, putCarStatus.loading, statusCar.loading]);
-  console.log(statusCar)
+
   const handleChange = (event, dispatchFunc, errorFunc) => {
     dispatch(errorFunc(false));
     return dispatch(dispatchFunc(event.target.value));

@@ -36,7 +36,7 @@ export default function DatePickers({ dateTo, dateFrom }) {
   }, [order.dateFrom, order.dateTo]);
 
   useEffect(() => {
-    if (order.rateId === null) return
+    if (order.hasOwnProperty("rateId") === false) return
     switch(order.rateId.price) {
       case 1999:
         days && hours ?
