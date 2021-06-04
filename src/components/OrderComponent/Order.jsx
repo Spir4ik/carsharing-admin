@@ -6,7 +6,7 @@ import { useHistory } from "react-router";
 import { addOrder } from "../../redux/actions/orderStoreAction";
 import getPointRequest from "../../redux/thunk/getPointRequest";
 import getRateRequest from "../../redux/thunk/getRateRequest";
-import clearOrderStatus from "../../redux/actions/clearPutOrderStatus"
+import clearOrderStatus from "../../redux/actions/clearOrderStatus"
 import classes from './Order.module.scss';
 import DesktopVersion from "./DesktopVersion.jsx";
 import MobileVersion from "./MobileVersion.jsx";

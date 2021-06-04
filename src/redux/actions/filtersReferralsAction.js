@@ -12,31 +12,10 @@ export const filterCategory = category => ({
   }
 });
 
-export const filterArray = array => ({
-  type: "FILTER_ARRAY",
-  payload: {
-    array
-  }
-});
-
 export const filterCities = cities => ({
   type: "FILTER_CITIES",
   payload: {
     cities
-  }
-});
-
-export const addCurrentCity = city => ({
-  type: "ADD_CURRENT_CITY",
-  payload: {
-    city
-  }
-});
-
-export const addCurrentStatus = currentStatus => ({
-  type: "ADD_CURRENT_STATUS",
-  payload: {
-    currentStatus
   }
 });
 
@@ -51,13 +30,6 @@ export const filterDate = date => ({
   type: "FILTER_DATE",
   payload: {
     date
-  }
-});
-
-export const addDateValue = dateValue => ({
-  type: "ADD_DATE_VALUE",
-  payload: {
-    dateValue
   }
 });
 

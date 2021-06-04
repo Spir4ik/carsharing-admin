@@ -54,6 +54,13 @@ export const changeColorOrders = color => ({
     }
 });
 
+export const changeStatus = status => ({
+    type: "CHANGE_STATUS",
+    payload: {
+        status
+    }
+});
+
 export const changeTankOrders = () => ({
     type: "CHANGE_TANK_ORDERS"
 });

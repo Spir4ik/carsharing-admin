@@ -8,8 +8,8 @@ import iconReject from "../../assets/icon-reject.svg";
 export default function RenderButtons({item, handleChangeOrder}) {
     return(
         <>
-          <button className={item.orderStatusId.name === "new" ? classes.successfully : ""}><img src={iconCheck} alt="" /><span>Готово</span></button>
-          <button className={item.orderStatusId.name === "cancelled" ? classes.cancelled : ""}><img src={iconReject} alt="" /><span>Отмена</span></button>
+          <button disabled className={item.orderStatusId.name === "confirmed" ? classes.successfully : ""}><img src={iconCheck} alt="" /><span>Готово</span></button>
+          <button disabled className={item.orderStatusId.name === "cancelled" ? classes.cancelled : ""}><img src={iconReject} alt="" /><span>Отмена</span></button>
           <button onClick={() => handleChangeOrder(item)}><img src={iconEdit} alt="" /><span>Изменить</span></button>
         </>
     )

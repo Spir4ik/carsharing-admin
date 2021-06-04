@@ -10,7 +10,7 @@ export default function putCarReducer(state = initialStateCars, action) {
       return {
         ...state,
         loading: true,
-        car: []
+        car: {}
       };
     case 'PUT_CAR_SUCCESS':
       return {

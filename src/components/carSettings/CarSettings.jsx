@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import {
   addColor,
@@ -34,9 +34,9 @@ import putCarRequest from "../../redux/thunk/putCarRequest";
 import deleteCarRequest from "../../redux/thunk/deleteCarRequest";
 import postCarSelector from "../../redux/selectors/postCarSelector";
 import putCarSelector from "../../redux/selectors/putCarSelector";
+import deleteCarStatus from "../../redux/selectors/deleteCarSelector"
 
 export default function() {
-  const [numberMistakes, setNumberMistakes] = useState(0);
   const dispatch = useDispatch();
   const carStore = useSelector(carStoreSelector());
   const category = useSelector(categorySelector()).category;
@@ -44,14 +44,15 @@ export default function() {
   const errors = useSelector(errorSelector());
   const postCarStatus = useSelector(postCarSelector());
   const putCarStatus = useSelector(putCarSelector());
+  const statusCar = useSelector(deleteCarStatus());
   useEffect(() => dispatch(getCategory()), []);
   useEffect(() => {
-    if (postCarStatus.loading === true || putCarStatus.loading === true) {
-      dispatch(alertAction());
+    if (postCarStatus.loading === true || putCarStatus.loading === true || statusCar.loading === true) {
+      dispatch(alertAction(true));
       dispatch(clear());
     }
-  }, [postCarStatus, putCarStatus]);
-
+  }, [postCarStatus.loading, putCarStatus.loading, statusCar.loading]);
+  console.log(statusCar)
   const handleChange = (event, dispatchFunc, errorFunc) => {
     dispatch(errorFunc(false));
     return dispatch(dispatchFunc(event.target.value));
@@ -59,16 +60,14 @@ export default function() {
 
   const handleDelete = () => {
     if (carStore.hasOwnProperty("id")) {
-      dispatch(deleteCarRequest(carStore, carStore.id));
-      return dispatch(clear());
+      return dispatch(deleteCarRequest(carStore, carStore.id));
     }
     return null;
   }
 
   const handleRequestPost = () => {
     const generateError = (errorFunc) => {
-      dispatch(errorFunc(true));
-      return setNumberMistakes(value => value + 1);
+      return dispatch(errorFunc(true));
     };
 
     if (carStore.name === "") {
@@ -89,9 +88,7 @@ export default function() {
     if (carStore.priceMin === 0 || carStore.priceMin > carStore.priceMax) {
       generateError(errorPrice);
     }
-
-    if (numberMistakes === 0) {
-
+    if (carStore.name !== "" && carStore.colors.length !== 0 && carStore.tank !== "" && carStore.number !== "" && carStore.categoryId !== null && (carStore.priceMin !== 0 || carStore.priceMin > carStore.priceMax)) {
       return carStore.hasOwnProperty("id") ? dispatch(putCarRequest(carStore, carStore.id)) : dispatch(postCarRequest(carStore));
     }
     return null;

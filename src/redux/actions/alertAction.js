@@ -1,3 +1,6 @@
-export default () => ({
-  type: "SHOW_ALERT"
+export default status => ({
+  type: "SHOW_ALERT",
+  payload: {
+    status
+  }
 })

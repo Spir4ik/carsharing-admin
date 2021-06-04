@@ -50,6 +50,11 @@ export default function orderStoreReducer(state = initialOrderStore, action) {
           ...state,
           color: action.payload.color
         }
+      case "CHANGE_STATUS": 
+        return {
+          ...state,
+          orderStatusId: action.payload.status
+        }  
       case "CHANGE_TANK_ORDERS": 
         return {
           ...state,

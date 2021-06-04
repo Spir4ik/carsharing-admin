@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import classes from './CarSettings.module.scss'
 import Select from "../selectComp/Select.jsx";
@@ -10,28 +10,34 @@ import {
   changeChairOrders,
   changeWheelOrders,
   changeRateOrders,
+  changeStatus,
   clearOrderStore
 } from "../../redux/actions/orderStoreAction";
 import getPointRequest from "../../redux/thunk/getPointRequest";
 import putOrderRequest from "../../redux/thunk/putOrderRequest";
+import deleteOrderRequest from "../../redux/thunk/deleteOrderRequest"
 import orderStoreSelector from "../../redux/selectors/orderStoreSelector"
 import getPointSelector from "../../redux/selectors/getPointSelector"
 import getCitiesSelector from "../../redux/selectors/getCitiesSelector";
 import getRateSelector from "../../redux/selectors/getRateSelector";
 import putOrderSelector from "../../redux/selectors/putOrderSelector";
+import getOrderStatusSelector from "../../redux/selectors/getOrderStatusSelector";
+import deleteOrderSelector from "../../redux/selectors/deleteOrderSelector";
 
 export default function() {
   const order = useSelector(orderStoreSelector());
   const currentPoint = useSelector(getPointSelector()).point;
   const cities = useSelector(getCitiesSelector()).cities;
   const rates = useSelector(getRateSelector()).rates;
+  const orderStatusArray = useSelector(getOrderStatusSelector()).orderStatus;
+  const statusDeleteOrder = useSelector(deleteOrderSelector()).status;
   const putStatus = useSelector(putOrderSelector());
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(getPointRequest(order.cityId.id)), [order.cityId]);
   useEffect(() => {
-    if (putStatus.status === 200) dispatch(clearOrderStore())
-  }, [putStatus.status])
+    if (putStatus.status === 200 || statusDeleteOrder === 200) dispatch(clearOrderStore())
+  }, [putStatus.status, statusDeleteOrder])
 
   return(
     <div className={classes.container}>
@@ -68,6 +74,12 @@ export default function() {
               currentArray={rates}
               currentFunc={changeRateOrders}
               value={order.rateId !== null ? order.rateId.rateTypeId.name : ""}
+            />
+            <Select
+              label="Текущий статус"
+              currentArray={orderStatusArray}
+              currentFunc={changeStatus}
+              value={order.orderStatusId !== null ? order.orderStatusId.name : ""}
             />
             <div className={classes.paramOrder__checkbox}>
               <label>Доп. услуги</label>
@@ -112,10 +124,10 @@ export default function() {
         <div className={classes.btn__lineBlock}>
           <div className={classes.btn__groupe}>
             <button onClick={() => dispatch(putOrderRequest(order, order.id))}>Сохранить</button>
-            <button >Отменить</button>
+            <button onClick={() => dispatch(clearOrderStore())}>Отменить</button>
           </div>
           <div className={classes.btn__delete}>
-            <button >Удалить</button>
+            <button onClick={() => dispatch(deleteOrderRequest(order, order.id))}>Удалить</button>
           </div>
         </div>
       </div>

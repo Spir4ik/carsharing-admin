@@ -7,7 +7,7 @@
   @media (max-width: 925px) {
     margin: 15px 0 15px 0;
   }
-  @media (max-width: 425px) {
+  @media (max-width: 426px) {
     width: 100%;
     height: 100vh;
   }
@@ -174,11 +174,11 @@
       width: 95%;
       margin: 0 0 0 18px;
       height: 100px;
-      @media (max-width: 425px) {
+      @media (max-width: 426px) {
         margin: 0 27px 0 18px;
       }
       .btn__groupe {
-        @media (max-width: 425px) {
+        @media (max-width: 426px) {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -202,7 +202,7 @@
             margin-left: 12px;
             background-color: #E9ECEF;
             color: black;
-            @media (max-width: 425px) {
+            @media (max-width: 426px) {
               margin: 10px 0 0 0;
             }
           }

@@ -107,21 +107,29 @@
           }
           &:hover {
             cursor: pointer;
+            filter: brightness(80%);
           }
           &:disabled {
             &:hover {
               cursor: auto;
+              filter: none;
             }
           }
           &.successfully {
-            background-color: white;
+            background-color: #0EC261;
+            span {
+              color: white;
+            }
             &:hover {
               cursor: auto;
               filter: none;
             }
           }
           &.cancelled {
-            background-color: #C4183C;;
+            background-color: #C4183C;
+            span {
+              color: white;
+            }
             &:hover {
               cursor: auto;
               filter: none;
@@ -261,15 +269,24 @@
           &:disabled {
             &:hover {
               cursor: auto;
+              filter: none;
             }
           }
           &.successfully {
+            background-color: #0EC261;
+            span {
+              color: white;
+            }
             &:hover {
               cursor: auto;
               filter: none;
             }
           }
           &.cancelled {
+            background-color: #C4183C;
+            span {
+              color: white;
+            }
             &:hover {
               cursor: auto;
               filter: none;

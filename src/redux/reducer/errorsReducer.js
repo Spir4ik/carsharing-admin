@@ -57,6 +57,8 @@ export default function errorsReducer(state = initialErrors, action) {
           state: action.payload.state
         }
       };
+    case "ERROR_CLEAR":
+      return initialErrors
     default:
       return state;
   }

@@ -3,7 +3,9 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import PropTypes from 'prop-types';
 import classes from './CarsList.module.scss';
-import { addCompletedCar } from '../../redux/actions/carStoreAction'
+import { addCompletedCar } from '../../redux/actions/carStoreAction';
+import alertAction from "../../redux/actions/alertAction";
+import { errorClear } from '../../redux/actions/errorsAction'
 
 export default function CarsList({cars}) {
   const dispatch = useDispatch();
@@ -28,8 +30,10 @@ export default function CarsList({cars}) {
               <tr
                 key={index}
                 onClick={() => {
-                    dispatch(addCompletedCar(item));
-                    history.push("/admin/editpage");
+                  dispatch(alertAction(false))
+                  dispatch(errorClear())
+                  dispatch(addCompletedCar(item));
+                  history.push("/admin/editpage");
               }}>
                 <td className={classes.nameModel}>{item.name !== null ? item.name : "Нет названия"}</td>
                 <td className={classes.otherParam}>{item.categoryId !== null ? item.categoryId.name : "Нет категории"}</td>

@@ -43,7 +43,7 @@ export default function DatePickers({ dateTo, dateFrom }) {
             dispatch(changePriceOrders((days + 1) * 1999))
           : dispatch(changePriceOrders(days * 1999))
         break;
-      case 6:
+      case 7:
         dispatch(changePriceOrders((days * 1440 * 7) + (hours * 60 * 7)));
         break;
       case 7499:

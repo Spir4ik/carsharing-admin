@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useSelector } from "react-redux";
 import classes from './commonStyles.module.scss'
 import Header from "../components/header/Header.jsx";
@@ -11,10 +11,12 @@ import NotFoundPage from "../components/notFound/NotFoundPage.jsx";
 import Spinner from "../components/Spinner/Spinner.jsx";
 import orderStoreSelector from "../redux/selectors/orderStoreSelector";
 import putOrderSelector from "../redux/selectors/putOrderSelector";
+import deleteOrderSelector from "../redux/selectors/deleteOrderSelector";
 
 export default function() {
   const order = useSelector(orderStoreSelector());
   const putStatus = useSelector(putOrderSelector());
+  const statusDeleteOrder = useSelector(deleteOrderSelector());
   const renderContentBody = () => {
     if (order.hasOwnProperty("id")) {
       return(
@@ -47,7 +49,7 @@ export default function() {
           </div>
         </div>
       </div>
-      {putStatus.loading && <div className={classes.loading_window}>
+      {(putStatus.loading || statusDeleteOrder.loading) && <div className={classes.loading_window}>
         <div className={classes.spinner}>
           <Spinner />
         </div>

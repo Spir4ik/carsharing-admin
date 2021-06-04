@@ -18,14 +18,12 @@ import currentPageOrderAction from "../../redux/actions/currentPageOrderAction";
 import countOrderAction from "../../redux/actions/countOrderAction";
 import {
   filterCities,
-  addCurrentCity,
   filterStatus,
-  addCurrentStatus,
   clearFiltersState,
   filterDate,
-  addDateValue
 } from "../../redux/actions/filtersReferralsAction";
 import dateObj from '../../constDate'
+
 
 export default function() {
   const dispatch = useDispatch();
@@ -35,14 +33,14 @@ export default function() {
   const currentModel = useSelector(filtersReferralsSelector());
   const cities = useSelector(getCitiesSelector()).cities;
   const orderStatusArray = useSelector(getOrderStatusSelector()).orderStatus;
-  const [urlCity, setUrlCity] = useState("");
-  const [urlStatus, setUrlStatus] = useState("")
-  const [urlDateValue, setDateValue] = useState("")
+  const [urlCity, setUrlCity] = useState(currentModel.cities?.name ? currentModel.cities.id : "");
+  const [urlStatus, setUrlStatus] = useState(currentModel.status?.name ? currentModel.status.id : "")
+  const [urlDateValue, setDateValue] = useState(currentModel.date.value ? currentModel.date.value : 0)
   useEffect(() => dispatch(getOrderStatusRequest()), []);
   useEffect(() => dispatch(getCitiesRequest()), []);
   useEffect(() =>
-    dispatch(getOrdersRequest(currentPage, currentModel.currentCity, currentModel.currentStatus, currentModel.dateValue)),
-    [currentPage, currentModel.currentCity, currentModel.currentStatus, currentModel.dateValue]
+    dispatch(getOrdersRequest(currentPage, urlCity, urlStatus, urlDateValue)),
+    [currentPage, urlCity, urlStatus, urlDateValue]
   );
   useEffect(() => {
     if (currentOrder.order.length !== count) dispatch(countOrderAction(currentOrder.count));
@@ -51,7 +49,7 @@ export default function() {
   const paginationOrder = pageNumber => dispatch(currentPageOrderAction(pageNumber));
 
   const renderOrders = () => {
-      if ((currentOrder.count === 0 || currentOrder.count === 1) && currentOrder.loading === false) {
+      if (currentOrder.count === 0 && currentOrder.loading === false) {
         return(
           <div className={classes.notFound}>
             <div className={classes.header}>
@@ -71,13 +69,21 @@ export default function() {
       return <Order orders={currentOrder.order} />
   };
 
+  const handleClickClear = () => {
+    setUrlCity("");
+    setUrlStatus("");
+    setDateValue(0);
+    dispatch(currentPageOrderAction(0));
+    return dispatch(clearFiltersState());
+  }
+
   const handleClickToAccept = () => {
-    const currentUrlCity = currentModel.cities.hasOwnProperty("name") ? currentModel.cities.id : "";
-    const currentUrlStatus = currentModel.status.hasOwnProperty("name") ? currentModel.status.id : "";
-    dispatch(currentPageOrderAction(1));
-    dispatch(addCurrentCity(currentUrlCity));
-    dispatch(addCurrentStatus(currentUrlStatus));
-    dispatch(addDateValue(currentModel.date.value))
+    const currentUrlCity = currentModel.cities?.name ? currentModel.cities.id : "";
+    const currentUrlStatus = currentModel.status?.name ? currentModel.status.id : "";
+    dispatch(currentPageOrderAction(0));
+    setUrlCity(currentUrlCity);
+    setUrlStatus(currentUrlStatus);
+    setDateValue(currentModel.date.value);
   }
 
   return (
@@ -89,7 +95,7 @@ export default function() {
           <Select optionName="Город" currentArray={cities} currentFunc={filterCities} value={currentModel.cities.hasOwnProperty("name") ? currentModel.cities.name : ""} />
         </div>
         <div className={classes.filter__buttons}>
-          <button onClick={() => dispatch(clearFiltersState())}>Сбросить</button>
+          <button onClick={() => handleClickClear()}>Сбросить</button>
           <button onClick={() => handleClickToAccept()}>Принять</button>
         </div>
       </div>

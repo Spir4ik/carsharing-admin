@@ -39,3 +39,7 @@ export const errorSelect = state => ({
     state
   }
 });
+
+export const errorClear = () => ({
+  type: "ERROR_CLEAR"
+});

@@ -4,15 +4,15 @@ export default function deleteCarRequest(data, id) {
   return dispatch => {
     dispatch(deleteCarStarted());
     deleteCar(data, id)
-      .then(res => console.log(res))
+      .then(res => dispatch(deleteCarSuccess(res.status)))
       .catch(error => dispatch(deleteCarFailed(error)));
   };
 }
 
-export const deleteCarSuccess = car => ({
+export const deleteCarSuccess = status => ({
   type: 'DELETE_CAR_SUCCESS',
   payload: {
-    car
+    status
   }
 });
 

@@ -24,8 +24,8 @@ export default function() {
   const category = useSelector(categorySelector()).category;
   const currentModel = useSelector(filterModelSelector());
   const [currentPage, setCurrentPage] = useState(0);
-  const [urlCategory, setUrlCategory] = useState("");
-  const [urlId, setUrlId] = useState("")
+  const [urlCategory, setUrlCategory] = useState(currentModel.category?.id ? currentModel.category.id : "");
+  const [urlId, setUrlId] = useState(currentModel.model?.id ? currentModel.model.id : "")
 
   useEffect(() => {
     dispatch(getCars());
@@ -52,7 +52,7 @@ export default function() {
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
   const renderCarList = () => {
-    if ((paginationCars.count === 0 || paginationCars.count === 1) && paginationCars.loading === false) {
+    if (paginationCars.count === 0 && paginationCars.loading === false) {
       return(
         <div className={classes.notFound}>
           <div className={classes.header}>
