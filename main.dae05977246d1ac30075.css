@@ -827,6 +827,29 @@ body {
         ._1077QsWyd5YGatm1jp9efh .lCNAlqSXy6XkePymJrQjk span {
           font-size: 12px; } }
 
+._26J75hphdHAE1MAABWG7Yr {
+  position: absolute;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 200px;
+  height: 40px;
+  right: 20px;
+  top: 70px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 6px 6px 25px 0px rgba(34, 60, 80, 0.2); }
+  ._26J75hphdHAE1MAABWG7Yr:hover {
+    box-shadow: inset 0px -1px 0px #E1E5EB, inset 4px 0px 0px #007BFF;
+    cursor: pointer; }
+  ._26J75hphdHAE1MAABWG7Yr ._3SCsO3RBbVd5iN11WrRY7w {
+    padding: 0 10px 0 10px; }
+    ._26J75hphdHAE1MAABWG7Yr ._3SCsO3RBbVd5iN11WrRY7w span {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      color: #5A6169; }
+
 ._2kCLIkzJYgueeg5Uji9pqU {
   width: 335px;
   height: 500px;
@@ -1620,16 +1643,22 @@ body {
         ._28rTcITwgtqBzpcaZ9ib_J .vj_q9zNZf6I2yZUQhOPbY ._3YJnbu62CnFaFraiz2R1r6 button:last-child {
           border-radius: 0 4px 4px 0; }
         ._28rTcITwgtqBzpcaZ9ib_J .vj_q9zNZf6I2yZUQhOPbY ._3YJnbu62CnFaFraiz2R1r6 button:hover {
-          cursor: pointer; }
+          cursor: pointer;
+          filter: brightness(80%); }
         ._28rTcITwgtqBzpcaZ9ib_J .vj_q9zNZf6I2yZUQhOPbY ._3YJnbu62CnFaFraiz2R1r6 button:disabled:hover {
-          cursor: auto; }
+          cursor: auto;
+          filter: none; }
         ._28rTcITwgtqBzpcaZ9ib_J .vj_q9zNZf6I2yZUQhOPbY ._3YJnbu62CnFaFraiz2R1r6 button.dwrjnaWBsH78iu4XY3q7N {
-          background-color: white; }
+          background-color: #0EC261; }
+          ._28rTcITwgtqBzpcaZ9ib_J .vj_q9zNZf6I2yZUQhOPbY ._3YJnbu62CnFaFraiz2R1r6 button.dwrjnaWBsH78iu4XY3q7N span {
+            color: white; }
           ._28rTcITwgtqBzpcaZ9ib_J .vj_q9zNZf6I2yZUQhOPbY ._3YJnbu62CnFaFraiz2R1r6 button.dwrjnaWBsH78iu4XY3q7N:hover {
             cursor: auto;
             filter: none; }
         ._28rTcITwgtqBzpcaZ9ib_J .vj_q9zNZf6I2yZUQhOPbY ._3YJnbu62CnFaFraiz2R1r6 button._1Y6Rwzc2QOYMXHldeeI22f {
           background-color: #C4183C; }
+          ._28rTcITwgtqBzpcaZ9ib_J .vj_q9zNZf6I2yZUQhOPbY ._3YJnbu62CnFaFraiz2R1r6 button._1Y6Rwzc2QOYMXHldeeI22f span {
+            color: white; }
           ._28rTcITwgtqBzpcaZ9ib_J .vj_q9zNZf6I2yZUQhOPbY ._3YJnbu62CnFaFraiz2R1r6 button._1Y6Rwzc2QOYMXHldeeI22f:hover {
             cursor: auto;
             filter: none; }
@@ -1734,13 +1763,22 @@ body {
           ._28rTcITwgtqBzpcaZ9ib_J ._2X1W-Kwd_NH2yH0cgiJDYi .PH2WbpgzIfx_cR0cPTTE1 ._1E8AWbptiLNOsPa-ne3nrJ button:hover {
             cursor: pointer; }
           ._28rTcITwgtqBzpcaZ9ib_J ._2X1W-Kwd_NH2yH0cgiJDYi .PH2WbpgzIfx_cR0cPTTE1 ._1E8AWbptiLNOsPa-ne3nrJ button:disabled:hover {
-            cursor: auto; }
-          ._28rTcITwgtqBzpcaZ9ib_J ._2X1W-Kwd_NH2yH0cgiJDYi .PH2WbpgzIfx_cR0cPTTE1 ._1E8AWbptiLNOsPa-ne3nrJ button.dwrjnaWBsH78iu4XY3q7N:hover {
             cursor: auto;
             filter: none; }
-          ._28rTcITwgtqBzpcaZ9ib_J ._2X1W-Kwd_NH2yH0cgiJDYi .PH2WbpgzIfx_cR0cPTTE1 ._1E8AWbptiLNOsPa-ne3nrJ button._1Y6Rwzc2QOYMXHldeeI22f:hover {
-            cursor: auto;
-            filter: none; }
+          ._28rTcITwgtqBzpcaZ9ib_J ._2X1W-Kwd_NH2yH0cgiJDYi .PH2WbpgzIfx_cR0cPTTE1 ._1E8AWbptiLNOsPa-ne3nrJ button.dwrjnaWBsH78iu4XY3q7N {
+            background-color: #0EC261; }
+            ._28rTcITwgtqBzpcaZ9ib_J ._2X1W-Kwd_NH2yH0cgiJDYi .PH2WbpgzIfx_cR0cPTTE1 ._1E8AWbptiLNOsPa-ne3nrJ button.dwrjnaWBsH78iu4XY3q7N span {
+              color: white; }
+            ._28rTcITwgtqBzpcaZ9ib_J ._2X1W-Kwd_NH2yH0cgiJDYi .PH2WbpgzIfx_cR0cPTTE1 ._1E8AWbptiLNOsPa-ne3nrJ button.dwrjnaWBsH78iu4XY3q7N:hover {
+              cursor: auto;
+              filter: none; }
+          ._28rTcITwgtqBzpcaZ9ib_J ._2X1W-Kwd_NH2yH0cgiJDYi .PH2WbpgzIfx_cR0cPTTE1 ._1E8AWbptiLNOsPa-ne3nrJ button._1Y6Rwzc2QOYMXHldeeI22f {
+            background-color: #C4183C; }
+            ._28rTcITwgtqBzpcaZ9ib_J ._2X1W-Kwd_NH2yH0cgiJDYi .PH2WbpgzIfx_cR0cPTTE1 ._1E8AWbptiLNOsPa-ne3nrJ button._1Y6Rwzc2QOYMXHldeeI22f span {
+              color: white; }
+            ._28rTcITwgtqBzpcaZ9ib_J ._2X1W-Kwd_NH2yH0cgiJDYi .PH2WbpgzIfx_cR0cPTTE1 ._1E8AWbptiLNOsPa-ne3nrJ button._1Y6Rwzc2QOYMXHldeeI22f:hover {
+              cursor: auto;
+              filter: none; }
           ._28rTcITwgtqBzpcaZ9ib_J ._2X1W-Kwd_NH2yH0cgiJDYi .PH2WbpgzIfx_cR0cPTTE1 ._1E8AWbptiLNOsPa-ne3nrJ button span {
             font-style: normal;
             font-weight: normal;
