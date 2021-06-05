@@ -76,7 +76,6 @@ export default function orderStoreReducer(state = initialOrderStore, action) {
       case "ADD_ORDER_STORE": 
         return action.payload.order;
       case "CLEAR__ORDER__STORE":
-        console.log("its worked??")
         return initialOrderStore;
       default:
         return state;
