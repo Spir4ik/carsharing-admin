@@ -22,6 +22,7 @@ export default function Order({orders}) {
     dispatch(addOrder(item))
     history.push("/admin/editorder")
   }
+  
   return(
     <div className={classes.container}>
       {orders.map((item, index) => {

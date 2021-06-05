@@ -38,7 +38,7 @@ export default function() {
   useEffect(() => {
     if (putStatus.status === 200 || statusDeleteOrder === 200) dispatch(clearOrderStore())
   }, [putStatus.status, statusDeleteOrder])
-
+  
   return(
     <div className={classes.container}>
       <div className={classes.header}>

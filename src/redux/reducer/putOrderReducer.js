@@ -25,7 +25,7 @@ const initialStatePutOrder = {
           loading: false,
           error: action.payload.error
         };
-      case "CLEAR_PUT_ORDER_STATUS":
+      case "CLEAR_ORDER_STATUS":
         return initialStatePutOrder;
       default:
         return state;
